@@ -4,8 +4,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.Statement;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import com.lovebcub.news.util.ConfigManager;
 
@@ -36,7 +40,43 @@ public class BaseDao {
 		return true;
 		
 	}
-	
+	//通过数据源来获取链接
+	public Connection getConnectionObjUseDataSource(){
+		//连接池模块
+		//javax.naming包中的Context
+		//
+		try{
+			//初始化Context对象
+			//此对象也是一个流对象
+			
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource)context.lookup("java:comp/env/jdbc/news");
+			connection = dataSource.getConnection();
+			//从数据源获取链接对象
+			//添加java:comp/env/jdbc/news协议
+			////
+			
+		}catch(NamingException e){
+			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		return connection;
+		
+		
+		
+		
+		
+		
+	}
 	public int executeUpdate(String sql ,Object[] params){
 		
 		int updateRows = 0;
