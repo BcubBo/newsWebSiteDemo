@@ -1,12 +1,9 @@
 package com.lovebcub.news.dao.impl;
 
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
-import com.lovebcub.news.dao.BaseDao;
-import com.lovebcub.news.dao.NewsDao;
+import java.util.Date;
 
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
@@ -129,7 +126,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		NewsDaoImpl newsDaoImpl = new NewsDaoImpl();
 		//newsDaoImpl.add(5, 1, "校园惊险恐龙", "一所校园出现食肉恐龙", "当地居民与其进行殊死搏斗", "BcubBo", (new Date()));
 		//
-		newsDaoImpl.update(5, 1, "校园惊现恐龙");
+		//newsDaoImpl.update(5, 1, "校园惊现恐龙");
 		//newsDaoImpl.delete(5);
 		newsDaoImpl.getNewsList();//列出
 		
