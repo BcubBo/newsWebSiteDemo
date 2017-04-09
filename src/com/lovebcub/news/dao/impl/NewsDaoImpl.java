@@ -140,7 +140,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	}
 
 
-////
+////无用注释测试位置
 }
 	
 
