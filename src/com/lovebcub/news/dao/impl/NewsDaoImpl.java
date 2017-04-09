@@ -140,7 +140,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	}
 
 
-///
+////
 }
 	
 
