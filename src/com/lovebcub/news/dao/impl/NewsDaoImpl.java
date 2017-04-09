@@ -1,5 +1,5 @@
 package com.lovebcub.news.dao.impl;
-
+import com.lovebcub.news.dao.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
