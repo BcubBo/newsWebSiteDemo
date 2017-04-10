@@ -17,7 +17,7 @@ public class BaseDao {
 	protected Connection connection;
 	protected PreparedStatement preparedSql;
 	protected Statement statement;
-	protected ResultSet resultSets;
+	protected ResultSet resultSets;//
 	
 	public boolean getConnectionObj(){
 		
@@ -54,7 +54,7 @@ public class BaseDao {
 			connection = dataSource.getConnection();
 			//从数据源获取链接对象
 			//添加java:comp/env/jdbc/news协议
-			////
+			//////
 			
 		}catch(NamingException e){
 			e.printStackTrace();
