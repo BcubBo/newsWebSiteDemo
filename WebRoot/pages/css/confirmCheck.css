@@ -1,0 +1,29 @@
+.confirmCorrectBox{
+	
+	color:green;
+	background-image:url("../images/li_ok.gif") ;
+	background-repeat:no-repeat;
+	background-position: 5px 2px;
+}
+
+
+
+.confirmIncorrectBox{
+	
+	color:red;
+	background-image:url("../images/li_err.gif") ;
+	background-repeat:no-repeat;
+	background-position: 5px 2px;
+	
+	
+	
+}
+.mainBoxCorrect{
+	
+	border:1px solid green;
+	
+	
+}
+.mainBoxIncorrect{
+	border:1px solid red;
+}
