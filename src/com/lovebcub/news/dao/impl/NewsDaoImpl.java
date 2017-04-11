@@ -15,7 +15,10 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		List<News> newsList = new ArrayList<News>();
 		//String sql = "select * from news_detail";
 		//可能或增加为动态的进行数据库的相关操作
-		String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName,detail.picPath ,detail.modifyDate from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";
+		String sql = "select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,detail.picPath ,detail.modifyDate from news_detail as detail order by id DESC";
+		//单表查询
+		/*String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName,detail.picPath ,detail.modifyDate from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";*/
+		//连表查询
 		Object[] params = {};
 		
 		try {
@@ -102,8 +105,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public boolean  update(News news) {
 		boolean flag = false;
 		try{
-			String sql = "update news_detail set title=? where id=?";
-			Object[] params = {news.getTitle(),news.getId()};
+			String sql = "update news_detail set categoryId=? where id=?";
+			//String sql = "update news_detail set title=? where id=?";
+			//sql语句原句
+			//Object[] params = {news.getTitle(),news.getId()};
+			Object[] params = {news.getCategoryId(),news.getId()};
+			//进行了sql语句的更改
 			
 			int i = this.executeUpdate(sql,params);
 			
@@ -157,17 +164,26 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	}
 	
 	public boolean deleteNewsCategory(NewsCategory newsCategory){
-		//进行逻辑封装
+		//进行逻辑封装,删除新闻标题分类
 		boolean flag = false;
 		try{
-		String sql = "delete from news_category where id=?";
+		String delNewsDetailSql = "delete from news_detail where categoryId=?";
+		String delNewsCategorySql = "delete from news_category where id=?";	
+		//先删除子表，后删除主表
 		Object [] params = {newsCategory.getId()};
-		int i =  this.executeUpdate(sql,params);
+		//关系约束条件
+		int i = this.executeUpdate(delNewsDetailSql,params);
+		int j = this.executeUpdate(delNewsCategorySql,params);
 		if(i>0){
-			System.out.println("删除新闻分类信息成功");
+				System.out.println("删除新闻详细分类子表信息成功");
+			if(j>0){
+				System.out.println("删除新闻详细分类主表信息成功");
+				
+			}
+			
 			flag = true;
 		}else{
-			System.out.println("删除新闻分类信息失败");
+			System.out.println("删除新闻详细分类子主表信息失败");
 		}
 		
 		
@@ -203,22 +219,29 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		NewsDaoImpl newsDaoImpl = new NewsDaoImpl();
 
 		News news = new News();
-	
-		news.setAuthor("BcubBo");
+		
+		NewsCategory newsCategory = new NewsCategory();
+		/*news.setAuthor("BcubBo");
 		news.setCategoryId(3);
 		news.setTitle("惊险震惊一幕！");
 		news.setSummary("惊险的过山车之旅！");
 		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
 		news.setCreateDate(new Date());
-		newsDaoImpl.add(news);
+		newsDaoImpl.add(news);*/
+		
 		//进行信息的添加操作，将来也可以进行封装
 		//news.setId(8);
 		//newsDaoImpl.delete(news);
 		//news.setId(5);
 		//news.setTitle("相当的震惊！！！");
 		//newsDaoImpl.update(news);
+		//news.setId(6);
+		//news.setCategoryId(4);
+		//newsDaoImpl.update(news);
 		List<News> newsList = new ArrayList<News>();
 		//始终需要进行select将信息取出
+		newsCategory.setId(4);
+		newsDaoImpl.deleteNewsCategory(newsCategory);
 		newsList = newsDaoImpl.getNewsList();//列出
 		for(News _news:newsList){
 			
