@@ -18,7 +18,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				int  id = resultSets.getInt("id");
 				int categoryId = resultSets.getInt("categoryId");
 				String title = resultSets.getString("title");
-				String summary = resultSets.getString("summary");
+				String summary = resultSets.getString("summary");//
 				String content = resultSets.getString("content");
 				String author = resultSets.getString("author");
 				Timestamp createDate  = resultSets.getTimestamp("createDate");
