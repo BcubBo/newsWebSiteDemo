@@ -3,7 +3,7 @@ import com.lovebcub.news.dao.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
+import java.util.Date;
 import com.lovebcub.news.entity.News;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,11 +14,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		List<News> newsList = new ArrayList<News>();
 		//String sql = "select * from news_detail";
 		//可能或增加为动态的进行数据库的相关操作
-		String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";
+		String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName,detail.picPath ,detail.modifyDate from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";
 		Object[] params = {};
 		
 		try {
 			ResultSet resultSets = this.executeSql(sql,params);
+			//返回的结果集里面包含从数据库添加进去的新对象
 			while(resultSets.next()){
 				int  id = resultSets.getInt("id");
 				int categoryId = resultSets.getInt("categoryId");
@@ -28,10 +29,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				String author = resultSets.getString("author");
 				Timestamp createDate  = resultSets.getTimestamp("createDate");
 				
-				String picPath = 
-resultSets.getString("picPath");
-				Timestamp modifyDate = 
-resultSets.getTimestamp("modifyDate");
+				String picPath = resultSets.getString("picPath");
+				Timestamp modifyDate = resultSets.getTimestamp("modifyDate");
 				/*ystem.out.println("id:"+id+"\n"+
 						"categoryId:"+categoryId+"\n"+
 						"title:"+title+"\n"+
@@ -53,7 +52,7 @@ resultSets.getTimestamp("modifyDate");
 				news.setCreateDate(createDate);
 				news.setModifyDate(modifyDate);
 				newsList.add(news);
-				
+				//通过while将信息存储到每次新建的对象中
 				
 			}
 			if(this.closeResource()){
@@ -73,8 +72,8 @@ resultSets.getTimestamp("modifyDate");
 	public boolean  add(News news) {
 		boolean flag = false;
 	try{
-		String sql = "insert into news_detail (id,categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?,?)";
-		Object[] params = {news.getId(),news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
+		String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?)";
+		Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
 				};
 		int i = this.executeUpdate(sql, params);
 		if(i>0){
@@ -135,6 +134,7 @@ resultSets.getTimestamp("modifyDate");
 		try{
 			String sql = "delete from news_detail where id=?";
 			Object[] params = {news.getId()};
+			//只取id
 			int i = this.executeUpdate(sql, params);
 			if(i>0){
 				System.out.println("删除信息成功");
@@ -162,7 +162,26 @@ resultSets.getTimestamp("modifyDate");
 		//
 		//newsDaoImpl.update(5, 1, "校园惊现恐龙");
 		//newsDaoImpl.delete(5);
-		newsDaoImpl.getNewsList();//列出
+		News news = new News();
+	
+	/*	news.setAuthor("BcubBo");
+		news.setCategoryId(3);
+		news.setTitle("惊险一幕！");
+		news.setSummary("惊险的过山车之旅！");
+		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
+		news.setCreateDate(new Date());
+		newsDaoImpl.add(news);*/
+		//进行信息的添加操作，将来也可以进行封装
+		news.setId(8);
+		newsDaoImpl.delete(news);
+		List<News> newsList = new ArrayList<News>();
+		//始终需要进行select将信息取出
+		newsList = newsDaoImpl.getNewsList();//列出
+		for(News _news:newsList){
+			
+			System.out.println("id:"+_news.getId()+"\n"+"categoryId:"+_news.getCategoryId()+"\n"+"title:"+_news.getTitle()+"\n"+"summary:"+_news.getTitle()+"\n"+"content:"+_news.getContent()+"\n"+"createDate:"+_news.getCreateDate()+"\n");
+			
+		}
 		
 		
 		
