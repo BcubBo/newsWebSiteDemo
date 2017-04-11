@@ -9,7 +9,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	
 	public void getNewsList() {
-		String sql = "select * from news_detail";
+		//String sql = "select * from news_detail";
+		String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";
 		Object[] params = {};
 		
 		try {
@@ -22,13 +23,15 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				String content = resultSets.getString("content");
 				String author = resultSets.getString("author");
 				Timestamp createDate  = resultSets.getTimestamp("createDate");
+				String categoryName = resultSets.getString("categoryName");
 				System.out.println("id:"+id+"\n"+
 						"categoryId:"+categoryId+"\n"+
 						"title:"+title+"\n"+
 						"summary:"+summary+"\n"+
 						"content:"+content+"\n"+
 						"author:"+author+"\n"+
-						"createDate:"+createDate+"\n"
+						"createDate:"+createDate+"\n"+
+						"categoryName:"+categoryName+"\n"
 				);
 				
 			}
