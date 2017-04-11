@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import com.lovebcub.news.entity.News;
+import com.lovebcub.news.entity.NewsCategory;
 import java.util.List;
 import java.util.ArrayList;
 public class NewsDaoImpl extends BaseDao implements NewsDao {
@@ -101,8 +102,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public boolean  update(News news) {
 		boolean flag = false;
 		try{
-			String sql = "update news_detail set title=?,categoryId=? where id=?";
-			Object[] params = {news.getTitle(),news.getCategoryId(),news.getId()};
+			String sql = "update news_detail set title=? where id=?";
+			Object[] params = {news.getTitle(),news.getId()};
 			
 			int i = this.executeUpdate(sql,params);
 			
@@ -155,31 +156,73 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return flag;
 	}
 	
+	public boolean deleteNewsCategory(NewsCategory newsCategory){
+		//进行逻辑封装
+		boolean flag = false;
+		try{
+		String sql = "delete from news_category where id=?";
+		Object [] params = {newsCategory.getId()};
+		int i =  this.executeUpdate(sql,params);
+		if(i>0){
+			System.out.println("删除新闻分类信息成功");
+			flag = true;
+		}else{
+			System.out.println("删除新闻分类信息失败");
+		}
+		
+		
+		}finally{
+			if(this.closeResource()){
+				System.out.println("关闭资源成功");
+				
+				
+			}else{
+				System.out.println("关闭资源失败");
+			}
+			
+		}
+		
+		return flag;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[]args){
 		
 		NewsDaoImpl newsDaoImpl = new NewsDaoImpl();
-		//newsDaoImpl.add(5, 1, "校园惊险恐龙", "一所校园出现食肉恐龙", "当地居民与其进行殊死搏斗", "BcubBo", (new Date()));
-		//
-		//newsDaoImpl.update(5, 1, "校园惊现恐龙");
-		//newsDaoImpl.delete(5);
+
 		News news = new News();
 	
-	/*	news.setAuthor("BcubBo");
+		news.setAuthor("BcubBo");
 		news.setCategoryId(3);
-		news.setTitle("惊险一幕！");
+		news.setTitle("惊险震惊一幕！");
 		news.setSummary("惊险的过山车之旅！");
 		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
 		news.setCreateDate(new Date());
-		newsDaoImpl.add(news);*/
+		newsDaoImpl.add(news);
 		//进行信息的添加操作，将来也可以进行封装
-		news.setId(8);
-		newsDaoImpl.delete(news);
+		//news.setId(8);
+		//newsDaoImpl.delete(news);
+		//news.setId(5);
+		//news.setTitle("相当的震惊！！！");
+		//newsDaoImpl.update(news);
 		List<News> newsList = new ArrayList<News>();
 		//始终需要进行select将信息取出
 		newsList = newsDaoImpl.getNewsList();//列出
 		for(News _news:newsList){
 			
-			System.out.println("id:"+_news.getId()+"\n"+"categoryId:"+_news.getCategoryId()+"\n"+"title:"+_news.getTitle()+"\n"+"summary:"+_news.getTitle()+"\n"+"content:"+_news.getContent()+"\n"+"createDate:"+_news.getCreateDate()+"\n");
+			System.out.println("id:"+_news.getId()+"\n"+"categoryId:"+_news.getCategoryId()+"\n"+"title:"+_news.getTitle()+"\n"+"summary:"+_news.getSummary()+"\n"+"content:"+_news.getContent()+"\n"+"createDate:"+_news.getCreateDate()+"\n");
 			
 		}
 		
@@ -188,6 +231,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		
 		
 	}
+
+
+
 
 
 ////无用注释测试位置
