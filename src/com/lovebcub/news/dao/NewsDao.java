@@ -1,9 +1,11 @@
 package com.lovebcub.news.dao;
-import java.util.Date;
+import java.util.List;
+
+import com.lovebcub.news.entity.News;
 public interface NewsDao {
 	
-	public void getNewsList();
-	public void add(int id ,int categoryId,String title,String summary,String content,String author,Date createTime);
-	public void update(int id ,int categoryId,String title);
-	public void delete(int id);
+	public List<News> getNewsList();
+	public boolean add(News news);
+	public boolean update(News news );
+	public boolean delete(News news );
 }

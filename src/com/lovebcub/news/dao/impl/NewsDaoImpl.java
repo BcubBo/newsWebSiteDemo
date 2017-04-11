@@ -3,13 +3,17 @@ import com.lovebcub.news.dao.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 
+import com.lovebcub.news.entity.News;
+import java.util.List;
+import java.util.ArrayList;
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	
-	public void getNewsList() {
+	public List<News> getNewsList() {
+		List<News> newsList = new ArrayList<News>();
 		//String sql = "select * from news_detail";
+		//可能或增加为动态的进行数据库的相关操作
 		String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";
 		Object[] params = {};
 		
@@ -23,8 +27,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				String content = resultSets.getString("content");
 				String author = resultSets.getString("author");
 				Timestamp createDate  = resultSets.getTimestamp("createDate");
-				String categoryName = resultSets.getString("categoryName");
-				System.out.println("id:"+id+"\n"+
+				
+				String picPath = 
+resultSets.getString("picPath");
+				Timestamp modifyDate = 
+resultSets.getTimestamp("modifyDate");
+				/*ystem.out.println("id:"+id+"\n"+
 						"categoryId:"+categoryId+"\n"+
 						"title:"+title+"\n"+
 						"summary:"+summary+"\n"+
@@ -33,6 +41,19 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 						"createDate:"+createDate+"\n"+
 						"categoryName:"+categoryName+"\n"
 				);
+				*/
+				News news = new News();
+				news.setId(id);
+				news.setCategoryId(categoryId);
+				news.setTitle(title);
+				news.setSummary(summary);
+				news.setContent(content);
+				news.setPicPath(picPath);
+				news.setAuthor(author);
+				news.setCreateDate(createDate);
+				news.setModifyDate(modifyDate);
+				newsList.add(news);
+				
 				
 			}
 			if(this.closeResource()){
@@ -43,22 +64,26 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return newsList;
+		//返回
 		
 	}
 
 	
-	public void add(int id, int categoryId, String title, String summary, String content, String author,
-			Date createDate) {
+	public boolean  add(News news) {
+		boolean flag = false;
 	try{
 		String sql = "insert into news_detail (id,categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?,?)";
-		Object[] params = {id,categoryId,title,summary,content,author,(new Timestamp(createDate.getTime()))
+		Object[] params = {news.getId(),news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
 				};
 		int i = this.executeUpdate(sql, params);
 		if(i>0){
 			System.out.println("添加信息成功");
+			flag = true;
 			
 		}else{
 			System.out.println("添加信息失败");
+			flag = false;
 		}
 		
 	}finally{
@@ -66,15 +91,19 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			System.out.println("关闭资源成功");
 		}else{
 			System.out.println("关闭资源失败");
+			
+			}
 		}
-		}
+	return flag;
 	}
+
 //jdbc.connection.url = jdbc:mysql://localhost:3306/news?useSSL=false用useSSL=false来禁用ssl传输
 	
-	public void update(int id, int categoryId, String title) {
+	public boolean  update(News news) {
+		boolean flag = false;
 		try{
 			String sql = "update news_detail set title=?,categoryId=? where id=?";
-			Object[] params = {title,categoryId,id};
+			Object[] params = {news.getTitle(),news.getCategoryId(),news.getId()};
 			
 			int i = this.executeUpdate(sql,params);
 			
@@ -82,6 +111,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			
 			if(i>0){
 				System.out.println("更新信息成功");
+				flag = true;
 				
 			}else{
 				System.out.println("更新信息失败");
@@ -95,19 +125,20 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			}
 		}
 		
-		
+		return flag;
 		
 	}
 
 	
-	public void delete(int id) {
+	public boolean delete(News news) {
+		boolean flag = false;
 		try{
 			String sql = "delete from news_detail where id=?";
-			Object[] params = {id};
+			Object[] params = {news.getId()};
 			int i = this.executeUpdate(sql, params);
 			if(i>0){
 				System.out.println("删除信息成功");
-				
+				flag = true;
 			}else{
 				System.out.println("删除信息失败");
 			}
@@ -121,7 +152,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				}
 		}
 		
-		
+		return flag;
 	}
 	
 	public static void main(String[]args){
