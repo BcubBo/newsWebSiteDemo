@@ -5,6 +5,10 @@
 <%@page import="com.lovebcub.news.service.impl.NewsServiceImpl"%>
 <%@ page language="java" import="java.util.Date,java.text.SimpleDateFormat" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <jsp:useBean id="newsService" class="com.lovebcub.news.service.impl.NewsServiceImpl" scope="page" />
+ <% 
+ //动作标签的作用相当于进行了NewsServiceImpl的实例化操作,即，id为对象变量名，class为类名的完全路径
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -131,9 +135,9 @@
                 
  
                 <%
-                	NewsServiceImpl newsService = new NewsServiceImpl();
-                	NewsDao newsDao = new NewsDaoImpl();
-                	newsService.setNewsDao(newsDao);
+                	//NewsServiceImpl newsService = new NewsServiceImpl();
+                	//NewsDao newsDao = new NewsDaoImpl();
+                	//newsService.setNewsDao(newsDao);
                 	//传入newDao对象并设置
                 	List<News> newsList = newsService.getNewsList();
                 	//从数据库取值
@@ -160,12 +164,12 @@
            <div class="page-bar">
 			<ul class="page-num-ul clearfix">
 				<li>共7条记录&nbsp;&nbsp; 1/2页</li>
-				<a href="javascript:page_nav(document.forms[0],2);">下一页</a>
-				<a href="javascript:page_nav(document.forms[0],2);">最后一页</a>&nbsp;&nbsp;
+				<li><a href="javascript:page_nav(document.forms[0],2);">下一页</a></li>
+				<li><a href="javascript:page_nav(document.forms[0],2);">最后一页</a></li><li>&nbsp;&nbsp;</li>
 			</ul>
 		 <span class="page-go-form"><label>跳转至</label>
 	     <input type="text" name="inputPage" id="inputPage" class="page-key" />页
-	     <button type="button" class="page-btn" onClick='jump_to(document.forms[0],document.getElementById("inputPage").value)'>GO</button>
+	     <button type="button" class="page-btn" onclick='jump_to(document.forms[0],document.getElementById("inputPage").value)'>GO</button>
 		</span>
 		</div> 
         </div>
