@@ -57,7 +57,7 @@ public class NewsServiceImpl  implements NewsService {
 		if(count>0){
 			
 			System.out.println("该类别下有新闻信息，请先删除新闻信息");
-			return new NewsCategoryDao().deleteNewsCategory(newsCategory);
+			return deleteNewsCategory(newsCategory);
 			
 			
 		}
