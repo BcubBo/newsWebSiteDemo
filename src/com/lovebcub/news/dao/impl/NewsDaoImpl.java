@@ -1,13 +1,14 @@
 package com.lovebcub.news.dao.impl;
-import com.lovebcub.news.dao.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
-import com.lovebcub.news.entity.*;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.lovebcub.news.dao.BaseDao;
+import com.lovebcub.news.dao.NewsDao;
+import com.lovebcub.news.entity.News;
+import com.lovebcub.news.entity.NewsCategory;
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	
@@ -57,6 +58,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				news.setModifyDate(modifyDate);
 				newsList.add(news);
 				//通过while将信息存储到每次新建的对象中
+				//可以进行二次封装
 				
 			}
 			if(this.closeResource()){
@@ -67,6 +69,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 		return newsList;
 		//返回
@@ -77,28 +80,28 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public boolean  add(News news) {
 		boolean flag = false;
 		if(this.getConnectionObj()){
-	try{
-		String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?)";
-		Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
-				};
-		int i = this.executeUpdate(sql, params);
-		if(i>0){
-			System.out.println("添加信息成功");
-			flag = true;
-			
-		}else{
-			System.out.println("添加信息失败");
-			flag = false;
-		}
-		
-	}finally{
-		if(this.closeResource()){
-			System.out.println("关闭资源成功");
-		}else{
-			System.out.println("关闭资源失败");
-			
+			try{
+				String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?)";
+				Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
+						};
+				int i = this.executeUpdate(sql, params);
+			if(i>0){
+				System.out.println("添加信息成功");
+				flag = true;
+				
+			}else{
+				System.out.println("添加信息失败");
+				flag = false;
 			}
-		}
+			
+			}finally{
+				if(this.closeResource()){
+					System.out.println("关闭资源成功");
+			}else{
+				System.out.println("关闭资源失败");
+				
+				}
+			}
 		}
 	return flag;
 	}
