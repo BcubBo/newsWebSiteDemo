@@ -1,14 +1,14 @@
 package com.lovebcub.news.service.impl;
 import java.util.List;
-import java.util.ArrayList;
+
+import com.lovebcub.news.dao.NewsCategoryDao;
 import com.lovebcub.news.dao.NewsDao;
 import com.lovebcub.news.dao.impl.NewsDaoImpl;
 import com.lovebcub.news.entity.News;
+import com.lovebcub.news.entity.NewsCategory;
 import com.lovebcub.news.service.NewsService;
 import com.lovebcub.news.dao.BaseDao;
-import com.lovebcub.news.dao.NewsCategoryDao;
-import com.lovebcub.news.entity.NewsCategory;
-public class NewsServiceImpl  implements NewsService {
+public class NewsServiceImpl  extends BaseDao implements NewsService,NewsCategoryDao {
 
 	NewsDao newsDao = new NewsDaoImpl();
 	public void setNewsDao(NewsDao newsDao){
@@ -57,7 +57,44 @@ public class NewsServiceImpl  implements NewsService {
 		if(count>0){
 			
 			System.out.println("该类别下有新闻信息，请先删除新闻信息");
-			return deleteNewsCategory(newsCategory);
+			//进行相应的删除操作
+			//可添加相应的判断
+
+			if(this.getConnectionObj()){
+				try{
+					String delNewsDetailSql = "delete from news_detail where categoryId=?";
+					String delNewsCategorySql = "delete from news_category where id=?";	
+					//先删除子表，后删除主表
+					Object [] params = {newsCategory.getId()};
+					//关系约束条件
+					int i = this.executeUpdate(delNewsDetailSql,params);
+					
+					if(i!=-1){
+							System.out.println("删除新闻详细分类子表信息成功");		
+							int j = 	this.executeUpdate(delNewsCategorySql,params);
+						if(j>0){
+							
+							System.out.println("删除新闻详细分类主表信息成功");
+							
+						}
+						
+						flag = true;
+					}else{
+						System.out.println("删除新闻详细分类子主表信息失败");
+					}
+					
+					
+					}finally{
+						if(this.closeResource()){
+							System.out.println("关闭资源成功");
+							
+							
+						}else{
+							System.out.println("关闭资源失败");
+						}
+						
+					}
+				}
 			
 			
 		}
