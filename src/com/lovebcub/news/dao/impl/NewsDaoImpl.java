@@ -247,7 +247,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		//进行信息的添加操作，将来也可以进行封装
 		//news.setId(8);
 		//newsDaoImpl.delete(news);
-		//news.setId(5);
+		//news.setId(10);
 		//news.setTitle("相当的震惊！！！");
 		//newsDaoImpl.update(news);
 		//news.setId(6);
