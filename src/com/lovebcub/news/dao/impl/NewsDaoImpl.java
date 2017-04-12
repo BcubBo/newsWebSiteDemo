@@ -8,7 +8,6 @@ import java.util.List;
 import com.lovebcub.news.dao.BaseDao;
 import com.lovebcub.news.dao.NewsDao;
 import com.lovebcub.news.entity.News;
-import com.lovebcub.news.entity.NewsCategory;
 public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 	
@@ -153,10 +152,10 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			//只取id
 			int i = this.executeUpdate(sql, params);
 			if(i>0){
-				System.out.println("删除信息成功");
+				System.out.println("删除子表信息成功");
 				flag = true;
 			}else{
-				System.out.println("删除信息失败");
+				System.out.println("删除子表信息失败");
 			}
 		}finally{
 		
@@ -256,21 +255,21 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 	
 	
-	public static void main(String[]args){
+	/*public static void main(String[]args){
 		
 		NewsDaoImpl newsDaoImpl = new NewsDaoImpl();
 
 		News news = new News();
 		
 		//NewsCategory newsCategory = new NewsCategory();
-		/*news.setAuthor("BcubBo");
+		news.setAuthor("BcubBo");
 		news.setCategoryId(4);
 		news.setTitle("惊险震惊一幕！");
 		news.setSummary("惊险的过山车之旅！");
 		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
 		news.setCreateDate(new Date());
 		//date对象还是要有的
-		newsDaoImpl.add(news);*/
+		newsDaoImpl.add(news);
 		
 		//进行信息的添加操作，将来也可以进行封装
 		//news.setId(8);
@@ -302,7 +301,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 
 
-
+*/
 
 
 ////无用注释测试位置
