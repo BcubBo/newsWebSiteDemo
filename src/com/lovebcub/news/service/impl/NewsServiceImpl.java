@@ -68,10 +68,12 @@ public class NewsServiceImpl  extends BaseDao implements NewsService {
 			System.out.println("该类别下有新闻信息，请先删除新闻信息");
 			//进行相应的删除操作
 			//可添加相应的判断
-			if(new NewsCategoryDaoImpl().deleteNewsCategory(newsCategory)){
+			 
 				
-				flag=true; 
-				
+			}else{
+				if(new NewsCategoryDaoImpl().deleteNewsCategory(newsCategory)){
+					
+					flag=true;
 			}
 			
 		}
