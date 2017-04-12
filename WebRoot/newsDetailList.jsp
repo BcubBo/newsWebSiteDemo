@@ -1,6 +1,13 @@
+<%@page import="com.lovebcub.news.entity.News"%>
+<%@page import="java.util.List"%>
+<%@page import="com.lovebcub.news.dao.impl.NewsDaoImpl"%>
+<%@page import="com.lovebcub.news.dao.NewsDao"%>
+<%@page import="com.lovebcub.news.service.impl.NewsServiceImpl"%>
+<%@ page language="java" import="java.util.Date,java.text.SimpleDateFormat" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>无标题文档</title>
 <link type="text/css" rel="stylesheet" href="css/common.css"/>
 <style type="text/css">
@@ -122,41 +129,31 @@
                 </thead>
                 <tbody>
                 
-                	<tr >
-                		<td><a href='adminNewsView.jsp?id=2'>谈北京精神</a></td>
-                		<td>admin</td>
-                		<td>2012-6-12</td>
-                		<td><a href='adminNewsCreate.jsp?id=2'>修改</a>
-                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
-                		</td>
-                	</tr> 
+ 
+                <%
+                	NewsServiceImpl newsService = new NewsServiceImpl();
+                	NewsDao newsDao = new NewsDaoImpl();
+                	newsService.setNewsDao(newsDao);
+                	//传入newDao对象并设置
+                	List<News> newsList = newsService.getNewsList();
+                	//从数据库取值
+                	int i = 0;
+                	for(News news:newsList){
+                		i++;
+                %>
                 
-                	<tr class="admin-list-td-h2">
-                		<td><a href='adminNewsView.jsp?id=3'>快女资讯快递</a></td>
-                		<td>admin</td>
-                		<td>2012-6-12</td>
+                	<tr <%if(i % 2==0){%>class="admin-list-td-h2"<%}%> >
+                		<td><a href='adminNewsView.jsp?id=3'><%=news.getTitle()%></a></td>
+                		<td><%=news.getAuthor()%></td>
+                		<td><%=news.getCreateDate()%></td>
                 		<td><a href='adminNewsCreate.jsp?id=3'>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=3'">删除</a>
                 		</td>
                 	</tr> 
+                <%}
                 
-                	<tr >
-                		<td><a href='adminNewsView.jsp?id=4'>85岁老人扭秧歌</a></td>
-                		<td>admin</td>
-                		<td>2012-6-12</td>
-                		<td><a href='adminNewsCreate.jsp?id=4'>修改</a>
-                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=4'">删除</a>
-                		</td>
-                	</tr> 
-                
-                	<tr class="admin-list-td-h2">
-                		<td><a href='adminNewsView.jsp?id=5'>云计算现状</a></td>
-                		<td>admin</td>
-                		<td>2012-6-12</td>
-                		<td><a href='adminNewsCreate.jsp?id=5'>修改</a>
-                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=5'">删除</a>
-                		</td>
-                	</tr> 
+                %>
+
                 
                 </tbody>
             </table>
