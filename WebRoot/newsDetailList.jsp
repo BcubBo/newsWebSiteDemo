@@ -19,6 +19,11 @@
 
 -->
 </style>
+<script type="text/javascript" >
+	function addNews(){
+		window.location = "newsDetailCreateSimple.jsp";
+	}
+</script>
 </head>
 
 <body>
