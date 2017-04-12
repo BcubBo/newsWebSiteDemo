@@ -172,7 +172,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return flag;
 	}
 	
-	public boolean deleteNewsCategory(NewsCategory newsCategory){
+	/*public boolean deleteNewsCategory(NewsCategory newsCategory){
 		//进行逻辑封装,删除新闻标题分类
 		boolean flag = false;
 		if(this.getConnectionObj()){
@@ -216,10 +216,38 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	}
 	
 	
+	*/
 	
 	
-	
-	
+	public int getNewsCount(News news) {
+		int count = 0;
+		String sql = "select count(1) as count from news_detail where categoryId=?";
+		Object[] params = {news.getCategoryId()};
+		//获取categoryId当中的新闻明细的条数
+		if(this.getConnectionObj()){
+			try{
+				ResultSet resultSets = this.executeSql(sql, params);
+				if(resultSets.next()){
+					
+					count = resultSets.getInt("count");
+					
+				}
+				
+			}catch(SQLException e){
+				e.printStackTrace();
+			
+			
+			
+			}finally{
+				this.closeResource();
+			}
+			
+		}
+		
+		
+		return count;
+	}
+
 	
 	
 	
@@ -270,6 +298,8 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		
 		
 	}
+
+
 
 
 
