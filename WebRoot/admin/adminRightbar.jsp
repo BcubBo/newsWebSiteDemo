@@ -1,0 +1,6 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<link type="text/css" rel="stylesheet" href="../css/common.css"/>
+   <div class="main-content-right">
+   	<iframe  name="rightIframe" style="WIDTH: 100%; HEIGHT: 800px;" src="newsDetailList.jsp"  frameborder=0>
+     </iframe>
+</div>

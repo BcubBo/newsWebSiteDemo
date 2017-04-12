@@ -1,6 +1,6 @@
 ﻿<%@page import="com.lovebcub.news.entity.News"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@include file="./common/common.jsp"%>
+<%@include file="../common/common.jsp"%>
 <script type="text/javascript">
  function addNews(){
 	 window.location = "newsDetailCreateSimple.jsp";

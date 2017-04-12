@@ -13,7 +13,7 @@
         </div>
     </div>
     <!--banner-->
-    <div class="main-banner"><img src="./images/banner.png" />
+    <div class="main-banner"><img src="../images/banner.png" />
     </div>
     <!--管理工具栏-->
     <div class="admin-bar"><span class="fr">退出账户</span>管理员：admin 2012-06-19
