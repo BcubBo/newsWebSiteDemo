@@ -105,7 +105,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		}
 	return flag;
 	}
-
+//测试位
 //jdbc.connection.url = jdbc:mysql://localhost:3306/news?useSSL=false用useSSL=false来禁用ssl传输
 	
 	public boolean  update(News news) {
