@@ -80,7 +80,7 @@ public class BaseDao {
 	public int executeUpdate(String sql ,Object[] params){
 		
 		int updateRows = 0;
-		if(getConnectionObj()){
+		
 		try{
 			
 			preparedSql = connection.prepareStatement(sql);
@@ -95,18 +95,19 @@ public class BaseDao {
 		}catch(SQLException e){
 			
 			e.printStackTrace();
+			updateRows = -1;
 		}
 		
 		
 		
 		//更改操作
 		
-		}
+		
 		return updateRows;
 	}
 	
 	public ResultSet executeSql(String sql ,Object[] params){
-		if(getConnectionObj()){
+		
 			try{
 				
 				
@@ -123,7 +124,7 @@ public class BaseDao {
 			}
 			
 			
-		}
+		
 		return resultSets;
 		
 	}

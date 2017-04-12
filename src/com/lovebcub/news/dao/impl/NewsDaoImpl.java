@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
-import com.lovebcub.news.entity.News;
-import com.lovebcub.news.entity.NewsCategory;
+import com.lovebcub.news.entity.*;
+
 import java.util.List;
 import java.util.ArrayList;
 public class NewsDaoImpl extends BaseDao implements NewsDao {
@@ -20,7 +20,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		/*String sql ="select detail.id,detail.categoryId,detail.title,detail.summary,detail.content,detail.author,detail.createDate,category.name as categoryName,detail.picPath ,detail.modifyDate from news_detail as detail,news_category as category where detail.categoryId = category.id order by id DESC ";*/
 		//连表查询
 		Object[] params = {};
-		
+		if(this.getConnectionObj()){
 		try {
 			ResultSet resultSets = this.executeSql(sql,params);
 			//返回的结果集里面包含从数据库添加进去的新对象
@@ -67,6 +67,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
 		return newsList;
 		//返回
 		
@@ -75,6 +76,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 	public boolean  add(News news) {
 		boolean flag = false;
+		if(this.getConnectionObj()){
 	try{
 		String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?)";
 		Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
@@ -97,6 +99,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			
 			}
 		}
+		}
 	return flag;
 	}
 
@@ -104,6 +107,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 	public boolean  update(News news) {
 		boolean flag = false;
+		if(this.getConnectionObj()){
 		try{
 			String sql = "update news_detail set categoryId=? where id=?";
 			//String sql = "update news_detail set title=? where id=?";
@@ -131,7 +135,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				System.out.println("关闭资源失败");
 			}
 		}
-		
+		}
 		return flag;
 		
 	}
@@ -139,6 +143,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 	public boolean delete(News news) {
 		boolean flag = false;
+		if(this.getConnectionObj()){
 		try{
 			String sql = "delete from news_detail where id=?";
 			Object[] params = {news.getId()};
@@ -159,6 +164,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			System.out.println("关闭资源失败");
 				}
 		}
+		}
 		
 		return flag;
 	}
@@ -166,6 +172,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public boolean deleteNewsCategory(NewsCategory newsCategory){
 		//进行逻辑封装,删除新闻标题分类
 		boolean flag = false;
+		if(this.getConnectionObj()){
 		try{
 		String delNewsDetailSql = "delete from news_detail where categoryId=?";
 		String delNewsCategorySql = "delete from news_category where id=?";	
@@ -173,10 +180,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		Object [] params = {newsCategory.getId()};
 		//关系约束条件
 		int i = this.executeUpdate(delNewsDetailSql,params);
-		int j = this.executeUpdate(delNewsCategorySql,params);
-		if(i>0){
-				System.out.println("删除新闻详细分类子表信息成功");
+		
+		if(i!=-1){
+				System.out.println("删除新闻详细分类子表信息成功");		
+				int j = 	this.executeUpdate(delNewsCategorySql,params);
 			if(j>0){
+				
 				System.out.println("删除新闻详细分类主表信息成功");
 				
 			}
@@ -197,10 +206,12 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			}
 			
 		}
+		}
 		
 		return flag;
 		
 	}
+	
 	
 	
 	
@@ -220,13 +231,14 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 
 		News news = new News();
 		
-		NewsCategory newsCategory = new NewsCategory();
+		//NewsCategory newsCategory = new NewsCategory();
 		/*news.setAuthor("BcubBo");
-		news.setCategoryId(3);
+		news.setCategoryId(4);
 		news.setTitle("惊险震惊一幕！");
 		news.setSummary("惊险的过山车之旅！");
 		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
 		news.setCreateDate(new Date());
+		//date对象还是要有的
 		newsDaoImpl.add(news);*/
 		
 		//进行信息的添加操作，将来也可以进行封装
@@ -239,9 +251,10 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		//news.setCategoryId(4);
 		//newsDaoImpl.update(news);
 		List<News> newsList = new ArrayList<News>();
+		
 		//始终需要进行select将信息取出
-		newsCategory.setId(4);
-		newsDaoImpl.deleteNewsCategory(newsCategory);
+		//newsCategory.setId(4);
+		//newsDaoImpl.deleteNewsCategory(newsCategory);
 		newsList = newsDaoImpl.getNewsList();//列出
 		for(News _news:newsList){
 			
