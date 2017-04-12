@@ -40,7 +40,7 @@ public class NewsServiceImpl  extends BaseDao implements NewsService {
 	
 	public boolean add(News news) {
 		
-		return false;
+		return newsDao.add(news);
 	}
 
 	
