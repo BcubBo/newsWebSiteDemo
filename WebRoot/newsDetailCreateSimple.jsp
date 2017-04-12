@@ -4,6 +4,12 @@
 <html>
 	<head>
 		<link href="<%=request.getContextPath() %>/css/common.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" >
+			function returnForward(){
+				
+				window.location = "newsDetailList.jsp";
+			}
+		</script>
 	</head>
 <body>
 <form name ="dataFrm" id="dataFrm" action="<%=request.getContextPath()%>/jsp/admin/newsServlet" method="post">
@@ -52,7 +58,7 @@
 			<tr>
 				<td style="text-align:center;" colspan="2">
 					<button type="submit" class="page-btn" name="save">保存</button>
-					<button type="button" class="page-btn" name="return" onclick="javascript:location.href='newsDetailList.jsp'">返回</button>
+					<button type="button" class="page-btn" name="return" onclick="returnForward()">返回</button>
 				</td>
 			</tr>
 		</tbody>

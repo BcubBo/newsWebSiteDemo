@@ -1,9 +1,11 @@
 ﻿<%@page import="com.lovebcub.news.entity.News"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<link type="text/css" rel="stylesheet" href="./css/common.css"/>
-
-<jsp:useBean id="newsService" class="com.lovebcub.news.service.impl.NewsServiceImpl"  scope="page"/>
-
+<%@include file="./common/common.jsp"%>
+<script type="text/javascript">
+ function addNews(){
+	 window.location = "newsDetailCreateSimple.jsp";
+ }
+</script>
   <div class="main-content-right">
         <!--即时新闻-->
         <div class="main-text-box">
