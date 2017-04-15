@@ -121,7 +121,7 @@
 	        				</select>
 		 				新闻标题<input type="text" name="title" id="title" value=''/>
 		 					<button type="submit" class="page-btn">GO</button>
-		 					<button type="button" onclick="addNews();" class="page-btn">增加</button>
+		 					<button type="button" onclick="addNews()" class="page-btn">增加</button>
 		 					<input type="hidden" name="currentPageNo" value="1"/>
 		 					<input type="hidden" name="pageSize" value="10"/>
 		 					<input type="hidden" name="totalPageCount" value="2"/>
