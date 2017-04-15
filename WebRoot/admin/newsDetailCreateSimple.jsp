@@ -12,7 +12,9 @@
 		</script>
 	</head>
 <body>
-<form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post">
+<form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
+	enctype="multipart/form-data"
+>
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
 		<thead>
 			<tr><td align="center" colspan="2" class="text_tabledetail2">增加新闻</td></tr>
@@ -53,7 +55,7 @@
 			</tr>
 			<tr>
 				<td style="text-align:right;" class="text_tabledetail2">上传图片 </td>
-				<td style="text-align:left;"><input type="text" name="picPath" value=""/></td>
+				<td style="text-align:left;"><input type="file" name="picPath" value=""/></td>
 			</tr>
 			<tr>
 				<td style="text-align:center;" colspan="2">

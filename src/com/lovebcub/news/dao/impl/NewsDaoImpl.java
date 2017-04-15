@@ -80,9 +80,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		boolean flag = false;
 		if(this.getConnectionObj()){
 			try{
-				String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate)values(?,?,?,?,?,?)";
-				Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate()
-						};
+				String sql = "insert into news_detail (categoryId,title,summary,content,author,createDate,picPath)values(?,?,?,?,?,?,?)";
+				Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate(),
+						news.getPicPath()};
 				int i = this.executeUpdate(sql, params);
 			if(i>0){
 				System.out.println("添加信息成功");
