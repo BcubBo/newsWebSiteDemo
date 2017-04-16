@@ -61,9 +61,9 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				
 			}
 			if(this.closeResource()){
-				System.out.println("资源关闭成功");
+				System.out.println(">>>>>>>资源关闭成功");
 			}else{
-				System.out.println("资源关闭失败");
+				System.out.println(">>>>>>>资源关闭失败");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,19 +85,19 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 						news.getPicPath()};
 				int i = this.executeUpdate(sql, params);
 			if(i>0){
-				System.out.println("添加信息成功");
+				System.out.println(">>>>>>>添加信息成功");
 				flag = true;
 				
 			}else{
-				System.out.println("添加信息失败");
+				System.out.println(">>>>>>>添加信息失败");
 				flag = false;
 			}
 			
 			}finally{
 				if(this.closeResource()){
-					System.out.println("关闭资源成功");
+					System.out.println(">>>>>>>关闭资源成功");
 			}else{
-				System.out.println("关闭资源失败");
+				System.out.println(">>>>>>>关闭资源失败");
 				
 				}
 			}
@@ -127,14 +127,14 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				flag = true;
 				
 			}else{
-				System.out.println("更新信息失败");
+				System.out.println(">>>>>>>更新信息失败");
 			}
 			
 		}finally{
 			if(this.closeResource()){
-				System.out.println("关闭资源成功");
+				System.out.println(">>>>>>>关闭资源成功");
 			}else{
-				System.out.println("关闭资源失败");
+				System.out.println(">>>>>>>关闭资源失败");
 			}
 		}
 		}
@@ -152,18 +152,18 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			//只取id
 			int i = this.executeUpdate(sql, params);
 			if(i>0){
-				System.out.println("删除子表信息成功");
+				System.out.println(">>>>>>>删除子表信息成功");
 				flag = true;
 			}else{
-				System.out.println("删除子表信息失败");
+				System.out.println(">>>>>>>删除子表信息失败");
 			}
 		}finally{
 		
 			
 			if(this.closeResource()){
-			System.out.println("关闭资源成功");
+			System.out.println(">>>>>>>关闭资源成功");
 			}else{
-			System.out.println("关闭资源失败");
+			System.out.println(">>>>>>>关闭资源失败");
 				}
 		}
 		}
@@ -251,7 +251,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public News getNewsById(int id) {
 		
 		News news = new News();
-		String sql = "select  n.*,cat.`name` as CategoryName from news_detail as n,news_category as cat where n.categoryId = ? and n.categoryId = cat.id order by cat.id asc;";
+		String sql = "select  n.*,cat.`name` as CategoryName from news_detail as n,news_category as cat where n.id = ? and n.categoryId = cat.id ";
 		Object [] params = {id};
 		if(this.getConnectionObj()){
 			//return resultset 
@@ -276,10 +276,68 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				
 				
 				
-			}catch(SQLException e){e.printStackTrace();}
+			}catch(SQLException e){e.printStackTrace();
+			}
+			finally{
+				this.closeResource();
+			}
 			
 		}
 		return news;
+	}
+
+
+	public int getNewsCount() {
+		int count = 0;
+		//获取数据的条数
+		String sql = "select count(*) as count  from news_detail";
+		Object[] params = {};
+		if(this.getConnectionObj()){
+			
+			ResultSet resultSets = this.executeSql(sql, params);
+			try {
+				if(resultSets.next()){
+					
+					count = resultSets.getInt("count");
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				this.closeResource();
+			}
+		}
+		
+		return count;
+	}
+
+
+	public List<News> getPageNewsList(int pageNo, int pageSize) {
+		List<News> newsList = new ArrayList<News>();
+		String sql = "select id,title,author,createDate from news_detail order by createDate desc limit ?,?";
+		pageNo = (pageNo-1)*pageSize;
+		Object [] params = {pageNo,pageSize};
+		if(this.getConnectionObj()){
+			
+			ResultSet resultSets = this.executeSql(sql, params);
+			try {
+				while(resultSets.next()){
+					News news = new News();
+					news.setId(resultSets.getInt("id"));
+					news.setTitle(resultSets.getString("title"));
+					news.setAuthor(resultSets.getString("author"));
+					news.setCreateDate(resultSets.getTimestamp("createDate"));
+					newsList.add(news);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				this.closeResource();
+			}
+			
+		}
+		//起始未知的确定
+		return newsList;
 	}
 	
 	

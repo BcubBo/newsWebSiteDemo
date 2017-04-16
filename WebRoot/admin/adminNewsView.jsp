@@ -29,9 +29,17 @@
 	                        <!--html注释-->
 	                        
 	                        </h1>
-	                        <div class="source-bar">发布者：<%=news.getAuthor()%> 分类：<%=news.getCategoryName()%> 更新时间：<%=news.getCreateDate()%></div>
+	                        <div class="source-bar">发布者：<%=news.getAuthor()%>&nbsp;&nbsp; 分类：<%=news.getCategoryName()%>&nbsp;&nbsp; 更新时间：<%=news.getCreateDate()%></div>
 	                        <div class="article-content">
-	                            <span class="article-summary"><b><%=news.getSummary()%></b></span>
+	                            <span class="article-summary"><b>摘要:<%=news.getSummary()%></b></span>
+	                            <%if(news.getPicPath()==null||news.getPicPath().equals("")){%>
+	                            新闻图片:暂无
+	                            <%}else{%>
+	                            <img alt="Git" src="<%=request.getContextPath()%>/upload/<%=news.getPicPath()%>" width="500px"height="300px"/>
+	                            <%}
+	                            
+	                            %>
+	                            <br/>
 	                            <p><%=news.getContent()%></p>
 	                            
 	                        </div>
@@ -39,6 +47,7 @@
 	                        
 	                    </div>
 	                </div>
+	                <button type="button" name="backButton" value="返回" onclick="javascript:location.href='newsDetailList.jsp'"></button>
 	            </div>
 </body>
 </html>

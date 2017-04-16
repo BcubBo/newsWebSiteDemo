@@ -14,5 +14,8 @@ public interface NewsDao {
 	//根据新闻ID查找新闻明细
 	
 	public News getNewsById(int  id);
-	
+	//获取新闻信息的总数量
+	public int getNewsCount();
+	//获取分页列表
+	public List<News> getPageNewsList(int pageNo,int pageSize);
 }
