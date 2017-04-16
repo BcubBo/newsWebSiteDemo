@@ -25,7 +25,7 @@ public class PageSupport {
 		//设置总记录数
 		if(totalCount>0){
 			this.totalCount = totalCount;
-			//当获取总记录数的同时进行页面的页数的设置
+			//当获取总记录数的同时进行页面的页数的确定
 			this.setTotalPageCountByCalc();
 		}
 		
@@ -53,7 +53,7 @@ public class PageSupport {
 		
 	}
 	public void setTotalPageCountByCalc(){
-		//通过计算进行页面大小，页面总数
+		//通过计算进行页面大小，页面总数的确定
 		if(this.totalCount%this.pageSize ==0){
 			this.totalPageCount = this.totalCount/this.pageSize;
 		}else if(this.totalCount%this.pageSize>0){

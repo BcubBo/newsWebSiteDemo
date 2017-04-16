@@ -47,7 +47,8 @@
 	                        
 	                    </div>
 	                </div>
-	                <button type="button" name="backButton" value="返回" onclick="javascript:location.href='newsDetailList.jsp'"></button>
+	               <input type="button" name="backButton" value="返回" onclick="javascript:location.href='newsDetailList.jsp'"/>
 	            </div>
+	             
 </body>
 </html>
