@@ -36,10 +36,8 @@ public class mainStart {
 		List<News> newsList = new ArrayList<News>();
 		newsList = newsService.getPageNewsList(2, 3);
 		for(News news:newsList){
-			System.out.println("news page id ====>"+news.getId());
-			System.out.println("news page author====>"+news.getAuthor());
-			System.out.println("news page title====>"+news.getTitle());
-			System.out.println("news page createDate====>"+news.getCreateDate());
+			System.out.println("news page id ====>"+news.getId()+"\n"+"news page author====>"+news.getAuthor()+"\n"+"news page title====>"+news.getTitle()+"\n"+"news page createDate====>"+news.getCreateDate());
+
 		}
 		
 		
