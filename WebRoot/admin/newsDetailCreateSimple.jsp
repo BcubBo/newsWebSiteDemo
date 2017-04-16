@@ -16,6 +16,7 @@
 				var checkPoint  = 0;
 				for(var i = 0;i<inputObj.length; i++){
 					valueArray[i] = inputObj[i].value;
+					//注意var的使用
 
 				}
 				for(var i = 0;i<valueArray.length;i++){

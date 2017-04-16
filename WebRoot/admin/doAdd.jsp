@@ -87,7 +87,8 @@
 						File fileFullPath = new File(fileTotalPath);
 						File saveFile = new File(uploadPath,fileFullPath.getName());
 						news.setPicPath(fileFullPath.getName());
-						item.write(saveFile);//上传操作，将文件进行上传位置的重新改写到服务器下的位置，文件名不变，为原始文件名
+						item.write(saveFile);
+						//上传操作，将文件进行上传位置的重新改写到服务器下的位置，文件名不变，为原始文件名
 						
 						//上传文件到指定路径
 						
