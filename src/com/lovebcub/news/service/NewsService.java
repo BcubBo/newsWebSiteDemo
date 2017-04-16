@@ -10,7 +10,8 @@ public interface NewsService {
 		//更新数据库
 		public boolean delete(News news );
 		//删除新闻信息
-		
+		public News getNewsById(int id);
+
 	
 
 }

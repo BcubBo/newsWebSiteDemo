@@ -55,10 +55,10 @@
                 %>
                 <tbody>
                 	<tr <%if(i%2!=0){%>class="admin-list-td-h2"<%} %>>
-                		<td><a href='adminNewsView.jsp?id=2'><%=news.getTitle() %></a></td>
+                		<td><a href='adminNewsView.jsp?id=<%=news.getId()%>'><%=news.getTitle() %></a></td>
                 		<td><%=news.getAuthor()%></td>
                 		<td><%=news.getCreateDate() %></td>
-                		<td><a href='adminNewsCreate.jsp?id=2'>修改</a>
+                		<td><a href='adminNewsCreate.jsp?id=<%=news.getId()%>'>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
                 		</td>
                 	</tr> 

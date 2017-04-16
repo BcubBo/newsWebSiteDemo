@@ -13,6 +13,7 @@ public class News {
 	private String author;
 	private Date createDate;
 	private Date modifyDate;
+	private String categoryName;
 	public String getSummary() {
 		return summary;
 	}
@@ -82,5 +83,13 @@ public class News {
 	public void setModifyDate(Date modifyDate) {
 		//设置修改日期
 		this.modifyDate = modifyDate;
+	}
+	public void setCategoryName(String categoryName){
+		//设置categoryName别名
+		this.categoryName = categoryName;
+	}
+	public String getCategoryName(){
+		//获取categoryName
+		return categoryName;
 	}
 }

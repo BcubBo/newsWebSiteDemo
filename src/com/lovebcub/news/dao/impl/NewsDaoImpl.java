@@ -247,6 +247,41 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 		return count;
 	}
 
+
+	public News getNewsById(int id) {
+		
+		News news = new News();
+		String sql = "select  n.*,cat.`name` as CategoryName from news_detail as n,news_category as cat where n.categoryId = ? and n.categoryId = cat.id order by cat.id asc;";
+		Object [] params = {id};
+		if(this.getConnectionObj()){
+			//return resultset 
+			ResultSet resultSets = this.executeSql(sql, params);
+			try{
+				
+				if(resultSets.next()){
+					
+					news.setId(resultSets.getInt("id"));
+					news.setTitle(resultSets.getString("title"));
+					news.setSummary(resultSets.getString("summary"));
+					news.setAuthor(resultSets.getString("author"));
+					news.setCategoryId(Integer.parseInt(resultSets.getString("categoryId")));	
+					news.setPicPath(resultSets.getString("picPath"));
+					news.setContent(resultSets.getString("content"));
+					news.setCreateDate(resultSets.getTimestamp("createDate"));
+					news.setCategoryName(resultSets.getString("categoryName"));
+					
+				}
+				
+				
+				
+				
+				
+			}catch(SQLException e){e.printStackTrace();}
+			
+		}
+		return news;
+	}
+	
 	
 	
 	

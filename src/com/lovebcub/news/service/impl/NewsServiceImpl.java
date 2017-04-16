@@ -83,5 +83,10 @@ public class NewsServiceImpl  extends BaseDao implements NewsService {
 		return flag;
 		
 	}
+	public News getNewsById(int id) {
+		
+		
+		return newsDao.getNewsById(id);
+	}
 	
 }

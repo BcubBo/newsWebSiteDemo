@@ -11,5 +11,8 @@ public interface NewsDao {
 	public boolean delete(News news );
 	
 	public int  getNewsCount(News news);
+	//根据新闻ID查找新闻明细
+	
+	public News getNewsById(int  id);
 	
 }
