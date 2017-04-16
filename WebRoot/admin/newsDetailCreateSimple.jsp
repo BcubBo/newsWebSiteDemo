@@ -9,11 +9,35 @@
 				
 				window.location = "newsDetailList.jsp";
 			}
+			function checkIfIsNull(){
+				var valueArray = new Array();
+				var inputObj = document.getElementsByTagName("input");
+				var checkPoint  = 0;
+				for(var i = 0;i<inputObj.length; i++){
+					valueArray[i] = inputObj[i].value;
+
+				}
+				for(var i = 0;i<valueArray.length;i++){
+					if(valueArray[i]!=null && valueArray[i]!=""){
+						checkPoint+=1;
+					}
+				}
+				if(checkPoint==valueArray.length){
+					
+					
+					return true;
+					
+				}else{
+					document.getElementById("checkPoint").style.color="red";
+					return false;
+				}
+				
+			}
 		</script>
 	</head>
 <body>
 <form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
-	enctype="multipart/form-data"
+	enctype="multipart/form-data" onsubmit="return checkIfIsNull()"
 >
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
 		<thead>
@@ -35,7 +59,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;" class="text_tabledetail2">标题</td>
+				<td style="text-align:right;" class="text_tabledetail2" id="checkPoint">标题</td>
 				<td style="text-align:left;"><input type="text" name="title" value=""/></td>
 			</tr>
 			<tr>
