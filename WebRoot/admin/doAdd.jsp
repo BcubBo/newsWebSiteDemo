@@ -50,6 +50,7 @@
 	
 				//若是普通的文本表单控件
 				String fieldName = item.getFieldName();
+				System.out.println("itemObj:"+item);
 					if(fieldName.equals("categoryId")){
 	
 						
@@ -78,7 +79,7 @@
 					//若是文件域
 					
 	
-	
+					System.out.println("itemObj:"+item);
 					String fileTotalPath = item.getName();//返回的是带有完全路径的路径名，这里获取的是原始上传位置的客户端磁盘文件路径
 	//只是为了获得最终的文件名称
 	

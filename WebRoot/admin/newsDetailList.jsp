@@ -60,7 +60,7 @@
 		 					<button type="button" onclick="addNews();" class="page-btn">增加</button>
 		 					<input type="hidden" id="pageIndex" name="pageIndex" value="1"/>					
 		 					
->
+
 		 	</div>
 		 	</form>
 			<table style="cellpadding:1, cellspacing:1" class="admin-list">
@@ -78,6 +78,7 @@
                		
                 	//当前页码
                 	String pageIndex = request.getParameter("pageIndex");
+                	//获取的getParameter是表单提交中的name的值所以取得的name的值为pageIndex的input标签中value的值 name和value是一对键值对
                 	int currentPageNo = 1;
                 	if(pageIndex==null){
                 		currentPageNo = 1;

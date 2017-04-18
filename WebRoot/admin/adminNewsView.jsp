@@ -10,12 +10,15 @@
 </head>
 <body>
 	<%
-	
+
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+
 		String id = request.getParameter("id");
 		News news = new News();
 		news = newsService.getNewsById(Integer.parseInt(id));
 	
-	
+		out.println("newsPicpath:"+news.getPicPath());
 	
 	
 	
