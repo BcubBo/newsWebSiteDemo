@@ -62,8 +62,10 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL HTTP/1.1 Connector on port 8080
     -->
-    <Connector URIEncoding="UTF-8" connectionTimeout="20000" port="8167" protocol="HTTP/1.1" redirectPort="8443" />
-    <!-- useBodyEncodingForURI="true"设置请求的编码方式为utf8-->
+    <Connector URIEncoding="utf-8" connectionTimeout="20000" port="8167" protocol="HTTP/1.1" redirectPort="8443" />
+    <!-- useBodyEncodingForURI="true"
+    	URIEncoding="utf-8"
+    	设置请求的编码方式为utf8-->
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -131,7 +133,7 @@
       
       
       
-      <Context docBase="news_copy_2" path="/news" reloadable="true" source="org.eclipse.jst.jee.server:news_copy_2">
+      <Context docBase="C:\Tomcat7.0.76\webapps\news_copy_2" path="" reloadable="true">
 
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
@@ -148,7 +150,8 @@
     -->
 <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/news" password="moodworldOriginal" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/news?useSSL=false" username="root"/>
 
-</Context></Host>
+</Context>
+</Host>
     </Engine>
   </Service>
 </Server>

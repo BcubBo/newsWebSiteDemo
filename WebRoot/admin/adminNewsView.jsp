@@ -18,7 +18,7 @@
 		News news = new News();
 		news = newsService.getNewsById(Integer.parseInt(id));
 	
-		out.println("newsPicpath:"+news.getPicPath());
+		//out.println("newsPicpath:"+news.getPicPath());
 	
 	
 	

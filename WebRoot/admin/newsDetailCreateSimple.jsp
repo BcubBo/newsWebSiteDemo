@@ -3,6 +3,12 @@
 
 <html>
 	<head>
+<%
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+
+
+%>
 		<link href="<%=request.getContextPath() %>/css/common.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" >
 			function returnForward(){
