@@ -18,8 +18,7 @@
 <body>
 <%
 
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
+
 	
 	boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 	String uploadPath = request.getSession().getServletContext().getRealPath("upload/");
