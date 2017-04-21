@@ -75,7 +75,7 @@
                 <%
                 	//页面容量
                 	int pageSize = 2;
-               		
+               		//StirngUtils.isNullOrEmpty(arg);
                 	//当前页码
                 	String pageIndex = request.getParameter("pageIndex");
                 	//获取的getParameter是表单提交中的name的值所以取得的name的值为pageIndex的input标签中value的值 name和value是一对键值对

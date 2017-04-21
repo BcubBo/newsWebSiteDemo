@@ -15,7 +15,14 @@
 		String id = request.getParameter("id");
 		News news = new News();
 		news = newsService.getNewsById(Integer.parseInt(id));
-	
+		request.setAttribute("author",news.getAuthor());
+		request.setAttribute("categoryName",news.getCategoryName());
+		request.setAttribute("CreateDate",news.getCreateDate());
+		request.setAttribute("summary",news.getSummary());
+		request.setAttribute("picPath",news.getPicPath());
+		request.setAttribute("content",news.getContent());
+		request.setAttribute("contextPath",request.getContextPath());
+		
 		//out.println("newsPicpath:"+news.getPicPath());
 	
 	
@@ -30,21 +37,21 @@
 	                        <!--html注释-->
 	                        
 	                        </h1>
-	                        <div class="source-bar">发布者：<%=news.getAuthor()%>&nbsp;&nbsp; 分类：<%=news.getCategoryName()%>&nbsp;&nbsp; 更新时间：<%=news.getCreateDate()%></div>
+	                        <div class="source-bar">发布者：${author}&nbsp;&nbsp; 分类：${categoryName}&nbsp;&nbsp; 更新时间：${CreateDate}</div>
 	                        <div class="article-content">
-	                            <span class="article-summary"><b>摘要:<%=news.getSummary()%></b></span>
+	                            <span class="article-summary"><b>摘要:${summary}</b></span>
 	                            <%if(news.getPicPath()==null||news.getPicPath().equals("")){%>
 	                            新闻图片:暂无
 	                            <%}else{%>
-	                            <img alt="Git" src="<%=request.getContextPath()%>/upload/<%=news.getPicPath()%>" width="500px"height="300px"/>
+	                            <img alt="Git" src="<%=request.getContextPath()%>${contextPath}/upload/${picPath}" width="500px"height="300px"/>
 	                            <%}
 	                            
 	                            %>
 	                            <br/>
-	                            <p><%=news.getContent()%></p>
+	                            <p>${content}</p>
 	                            
 	                        </div>
-
+							<div>修改为EL表达式模式</div>
 	                        
 	                    </div>
 	                </div>

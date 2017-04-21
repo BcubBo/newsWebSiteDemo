@@ -290,7 +290,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	public int getNewsCount() {
 		int count = 0;
 		//获取数据的条数
-		String sql = "select count(*) as count  from news_detail";
+		String sql = "select count(1) as count  from news_detail";
 		Object[] params = {};
 		if(this.getConnectionObj()){
 			
