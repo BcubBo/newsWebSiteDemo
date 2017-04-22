@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <%@include file="../common/common.jsp"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="com.lovebcub.news.entity.News"%>
+<%@page import="com.lovebcub.news.entity.NewsCategory"%>
+<%@page import="java.util.*"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,8 +23,15 @@
 
 <%
 	//取得新闻分类列表
-	
+	List<NewsCategory> newsCategoryList = new ArrayList<NewsCategory>();
+	newsCategoryList = newsCategoryService.getNewsCategoryList();
+	request.setAttribute("newsCategoryList",newsCategoryList);
 	//取得这个要修改的新闻信息明细
+	String id = request.getParameter("id");
+	News news = new News();
+	news = newsService.getNewsById(Integer.parseInt(id));
+	request.setAttribute("news",news);
+	
 
 
 
@@ -50,13 +62,17 @@
 				<td style="text-align:left;">
 				<!-- 列出所有的新闻分类 -->
 					<select name="categoryId">
-	        			<option value="1">国内</option>
-	        			<option value="2">国际</option>
-	        			<option value="3">娱乐</option>
-	        			<option value="4">军事</option>
-	        			<option value="5">财经</option>
-	        			<option value="6">天气</option>
+					<c:if test = "${newsCategoryList ne null}">
+					<c:forEach var="newsCategoryId" items="${newsCategoryList}">
+						
+	        			<option <c:if test="${newsCategory.id eq news.categoryId}"> selected="selected"</c:if>value="${newsCategoryId.id}">${newsCategoryId.name}</option>
+	        			
+	        			
+	        			</c:forEach>
+	        			</c:if>
 	        		</select>
+	        		
+	        		
 				</td>
 			</tr>
 			<tr>
