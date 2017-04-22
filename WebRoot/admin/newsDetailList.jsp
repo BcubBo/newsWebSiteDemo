@@ -131,9 +131,9 @@
                 
                 	<tr <%if(i%2!=0){%>class="admin-list-td-h2"<%} %>>
                 		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="${totalPageCount}"/>
-                		<a href='adminNewsView.jsp?id=${news.getId()}'>${news.getTitle()}</a></td>
-                		<td>${news.getAuthor()}</td>
-                		<td>${news.getCreateDate()}</td>
+                		<a href='adminNewsView.jsp?id=${news.getId()}'><c:out value = "${news.getTitle()}" /></a></td>
+                		<td><c:out value="${news.getAuthor()}" default="暂无"/></td>
+                		<td><c:out value="${news.getCreateDate()}" default="暂无"/></td>
                 		<td><a href='adminNewsCreate.jsp?id=${news.getId()}'>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
                 		</td>
@@ -145,13 +145,13 @@
             </table>
            <div class="page-bar">
 			<ul class="page-num-ul clearfix">
-				<li>共${totalCount}条记录 ${currentPageCount}/${totalPageCount}页
+				<li>共${totalCount}条记录 ${currentPageNo}/${totalPageCount}页
 				<%if(currentPageNo>1){%>
 				<a href="javascript:page_nav(document.forms[0],1)">首页</a>
-				<a href="javascript:page_nav(document.forms[0],<%=currentPageNo-1%>)">上一页</a>
+				<a href="javascript:page_nav(document.forms[0],${currentPgeNo-1})">上一页</a>
 				<%}%>
-				<%if(currentPageNo<totalPageCount){%><a href="javascript:page_nav(document.forms[0],<%=currentPageNo+1%>)">下一页</a>
-				<a href="javascript:page_nav(document.forms[0],<%=totalPageCount%>)">最后一页</a></li>
+				<%if(currentPageNo<totalPageCount){%><a href="javascript:page_nav(document.forms[0],${currentPageNo+1})">下一页</a>
+				<a href="javascript:page_nav(document.forms[0],${totalPageCount})">最后一页</a></li>
 				
 				<%}%>
 			</ul>

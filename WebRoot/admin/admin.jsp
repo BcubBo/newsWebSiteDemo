@@ -3,7 +3,7 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>无标题文档</title>
+<title>主页</title>
 <base target = "rightIframe"/>
 <link type="text/css" rel="stylesheet" href="../css/common.css"/>
 <style type="text/css">
