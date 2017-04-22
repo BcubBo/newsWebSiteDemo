@@ -2,6 +2,7 @@
 <%@page import="com.lovebcub.news.entity.News"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
  function addNews(){
 	 window.location = "newsDetailCreateSimple.jsp";
@@ -114,23 +115,26 @@
                 		currentPageNo = totalPageCount;
                 		
                 	}
-                	
+                	request.setAttribute("totalCount",totalCount);
+                	request.setAttribute("totalPageCount",totalPageCount);
+                	request.setAttribute("currentPageNo",currentPageNo);
                 	
                 	List<News> newsList = newsService.getPageNewsList(currentPageNo,pageSize);
 
                 	int i=0;
                 	for(News news:newsList){
                 		i++;
+                		request.setAttribute("news",news);
                 %>
                 
                 <tbody>
                 
                 	<tr <%if(i%2!=0){%>class="admin-list-td-h2"<%} %>>
-                		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="<%=totalPageCount%>"/>
-                		<a href='adminNewsView.jsp?id=<%=news.getId()%>'><%=news.getTitle() %></a></td>
-                		<td><%=news.getAuthor()%></td>
-                		<td><%=news.getCreateDate() %></td>
-                		<td><a href='adminNewsCreate.jsp?id=<%=news.getId()%>'>修改</a>
+                		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="${totalPageCount}"/>
+                		<a href='adminNewsView.jsp?id=${news.getId()}'>${news.getTitle()}</a></td>
+                		<td>${news.getAuthor()}</td>
+                		<td>${news.getCreateDate()}</td>
+                		<td><a href='adminNewsCreate.jsp?id=${news.getId()}'>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
                 		</td>
                 	</tr> 
@@ -141,7 +145,7 @@
             </table>
            <div class="page-bar">
 			<ul class="page-num-ul clearfix">
-				<li>共<%=totalCount%>条记录 <%=currentPageNo%>/<%=totalPageCount%>页
+				<li>共${totalCount}条记录 ${currentPageCount}/${totalPageCount}页
 				<%if(currentPageNo>1){%>
 				<a href="javascript:page_nav(document.forms[0],1)">首页</a>
 				<a href="javascript:page_nav(document.forms[0],<%=currentPageNo-1%>)">上一页</a>
