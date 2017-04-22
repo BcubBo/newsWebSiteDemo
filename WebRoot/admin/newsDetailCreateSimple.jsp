@@ -10,12 +10,13 @@
 
 
 %>
-		<link href="${request.getContextPath()}/css/common.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="./adminJS/contentCheck.js">
+<script type="text/javascript" src="./adminJS/contentCheck.js">
 
-		</script>
+</script>
 		<script src="${request.getContextPath()}/ckeditor/ckeditor.js">
-		</script>
+</script>
+		<link href="${request.getContextPath()}/css/common.css" rel="stylesheet" type="text/css" />
+		
 	</head>
 <body>
 <form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
