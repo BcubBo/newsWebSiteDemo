@@ -3,6 +3,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="../common/common.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script type="text/javascript">
  function addNews(){
 	 window.location = "newsDetailCreateSimple.jsp";
@@ -120,41 +121,54 @@
                 	request.setAttribute("currentPageNo",currentPageNo);
                 	
                 	List<News> newsList = newsService.getPageNewsList(currentPageNo,pageSize);
-
-                	int i=0;
+request.setAttribute("newsList",newsList);
+                	/* int i=0;
                 	for(News news:newsList){
                 		i++;
-                		request.setAttribute("news",news);
+                		request.setAttribute("news",news); */
                 %>
                 
                 <tbody>
-                
-                	<tr <%if(i%2!=0){%>class="admin-list-td-h2"<%} %>>
+                <c:forEach var="news" items="${newsList}" varStatus="status" >
+                	<tr <c:if test="${status.count%2!=0}">class="admin-list-td-h2"</c:if>>
                 		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="${totalPageCount}"/>
                 		<a href='adminNewsView.jsp?id=${news.getId()}'>
                 		<c:out  value = "${news.title}"  escapeXml="true"/></a></td>
                 		<td><c:out value="${news.author}" default="暂无"/></td>
                 		<td><c:out value="${news.createDate}" default="暂无"/></td>
-                		<td><a href='adminNewsCreate.jsp?id=${news.id}'>修改</a>
+                		<td><a href=
+                		<c:url value="adminNewsModify.jsp">
+                			<c:param name="id" value="${news.id}"></c:param>
+                		
+                		
+                		</c:url>
+                		
+                		
+                		
+                		
+                		>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
                 		</td>
                 	</tr> 
+                	 </c:forEach>
                 </tbody>
+               
                 <%
-                	}
+                	//}
                 %>
             </table>
            <div class="page-bar">
 			<ul class="page-num-ul clearfix">
 				<li>共${totalCount}条记录 ${currentPageNo}/${totalPageCount}页
-				<%if(currentPageNo>1){%>
+				<c:if test="${currentPageNo>1}">
 				<a href="javascript:page_nav(document.forms[0],1)">首页</a>
 				<a href="javascript:page_nav(document.forms[0],${currentPgeNo-1})">上一页</a>
-				<%}%>
-				<%if(currentPageNo<totalPageCount){%><a href="javascript:page_nav(document.forms[0],${currentPageNo+1})">下一页</a>
+				
+				</c:if>
+				<c:if test="${currentPageNo<totalPageCount}"><a href="javascript:page_nav(document.forms[0],${currentPageNo+1})">下一页</a>
 				<a href="javascript:page_nav(document.forms[0],${totalPageCount})">最后一页</a></li>
 				
-				<%}%>
+				</c:if>
 			</ul>
 		 <span class="page-go-form"><label>跳转至</label>
 	     <input type="text" name="inputPage" id="inputPage" class="page-key" />页

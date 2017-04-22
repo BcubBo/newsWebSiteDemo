@@ -1,5 +1,11 @@
 package com.lovebcub.news.dao.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Timestamp;
+
 import com.lovebcub.news.dao.BaseDao;
 import com.lovebcub.news.entity.NewsCategory;
 import com.lovebcub.news.dao.NewsCategoryDao;
@@ -43,5 +49,42 @@ public class NewsCategoryDaoImpl extends BaseDao implements NewsCategoryDao{
 		
 		
 		return flag;
+	}
+
+	public List<NewsCategory> getNewsCategoryList() {
+		
+		List<NewsCategory> newsCategoryList = new ArrayList<NewsCategory>();
+		String sql = "select * from news_category";
+		Object [] params = {};
+		
+		if(this.getConnectionObj()){
+			
+			ResultSet resultSets = this.executeSql(sql, params);
+			try {
+				while(resultSets.next()){
+					NewsCategory newsCategory = new NewsCategory();
+					newsCategory.setId(resultSets.getInt("id"));
+					newsCategory.setName(resultSets.getString("name"));
+					newsCategory.setCreateDate(resultSets.getTimestamp("createDate"));
+					newsCategoryList.add(newsCategory);
+					
+					
+					
+					
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				
+				this.closeResource();
+				
+				
+			}
+			
+			
+		}
+		
+		
+		return newsCategoryList;
 	}
 }

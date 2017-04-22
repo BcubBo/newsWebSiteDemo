@@ -97,5 +97,6 @@ public class NewsServiceImpl  extends BaseDao implements NewsService {
 		//获取分页列表
 		return newsDao.getPageNewsList(pageNo, pageSize);
 	}
+
 	
 }

@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@include file="../common/common.jsp"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,18 +36,17 @@
 	                        <div class="source-bar">发布者：${news.author}&nbsp;&nbsp; 分类：${news.categoryName}&nbsp;&nbsp; 更新时间：${news.createDate}</div>
 	                        <div class="article-content">
 	                            <span class="article-summary"><b>摘要:${news.summary}</b></span>
-	                            <%if(news.getPicPath()==null||news.getPicPath().equals("")){%>
+	                            <c:if test="${news.picPath eq null || news.picPath eq ''}">
 	                            新闻图片:暂无
-	                            <%}else{%>
-	                            <img alt="Git" src="${request.getContextPath()}/upload/${news.picPath}" width="500px"height="300px"/>
-	                            <%}
 	                            
-	                            %>
+	                            </c:if>
+	                            <img alt="${news.title}" src="${request.getContextPath()}/upload/${news.picPath}" width="500px"height="300px"/>
+	                            
 	                            <br/>
 	                            <p>${news.content}</p>
 	                            
 	                        </div>
-							<div>修改为JSTL表达式模式</div>
+							<div>修改为JSTL标签形式表达式</div>
 	                        
 	                    </div>
 	                </div>

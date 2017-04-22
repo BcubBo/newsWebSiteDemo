@@ -1,22 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="${request.getContextPath()}/css/common.css"
+	type="text/css" rel="style"
+	
+
+/>
+<script type="text/javascript" src="../ckeditor/ckeditor.js">
+</script>
+<script type="text/javascript" src="./adminJS/contentCheck.js">
+</script>
+</head>
+
 <%
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
+	//取得新闻分类列表
+	
+	//取得这个要修改的新闻信息明细
+
+
+
+
+
 
 
 %>
-		<link href="${request.getContextPath()}/css/common.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="./adminJS/contentCheck.js">
 
-		</script>
-		<script src="${request.getContextPath()}/ckeditor/ckeditor.js">
-		</script>
-	</head>
+
+
+
+
+
+
+
 <body>
 <form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
 	enctype="multipart/form-data" onsubmit="return checkIfIsNull()"
@@ -72,5 +91,6 @@
 		</tbody>
 	</table>
 </form>
+</body>
 </body>
 </html>
