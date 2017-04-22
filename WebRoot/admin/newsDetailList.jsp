@@ -131,10 +131,11 @@
                 
                 	<tr <%if(i%2!=0){%>class="admin-list-td-h2"<%} %>>
                 		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="${totalPageCount}"/>
-                		<a href='adminNewsView.jsp?id=${news.getId()}'><c:out value = "${news.getTitle()}" /></a></td>
-                		<td><c:out value="${news.getAuthor()}" default="暂无"/></td>
-                		<td><c:out value="${news.getCreateDate()}" default="暂无"/></td>
-                		<td><a href='adminNewsCreate.jsp?id=${news.getId()}'>修改</a>
+                		<a href='adminNewsView.jsp?id=${news.getId()}'>
+                		<c:out  value = "${news.title}"  escapeXml="true"/></a></td>
+                		<td><c:out value="${news.author}" default="暂无"/></td>
+                		<td><c:out value="${news.createDate}" default="暂无"/></td>
+                		<td><a href='adminNewsCreate.jsp?id=${news.id}'>修改</a>
                 			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
                 		</td>
                 	</tr> 

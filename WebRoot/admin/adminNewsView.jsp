@@ -15,14 +15,7 @@
 		String id = request.getParameter("id");
 		News news = new News();
 		news = newsService.getNewsById(Integer.parseInt(id));
-		request.setAttribute("author",news.getAuthor());
-		request.setAttribute("categoryName",news.getCategoryName());
-		request.setAttribute("CreateDate",news.getCreateDate());
-		request.setAttribute("summary",news.getSummary());
-		request.setAttribute("picPath",news.getPicPath());
-		request.setAttribute("content",news.getContent());
-		request.setAttribute("contextPath",request.getContextPath());
-		request.setAttribute("title",news.getTitle());
+		request.setAttribute("news",news);
 		
 		//out.println("newsPicpath:"+news.getPicPath());
 	
@@ -36,20 +29,20 @@
 	                    	<!--新闻的标题-->
 	                        <h1>
 	                        <!--html注释-->
-	                        ${title}
+	                        ${news.title}
 	                        </h1>
-	                        <div class="source-bar">发布者：${author}&nbsp;&nbsp; 分类：${categoryName}&nbsp;&nbsp; 更新时间：${CreateDate}</div>
+	                        <div class="source-bar">发布者：${news.author}&nbsp;&nbsp; 分类：${news.categoryName}&nbsp;&nbsp; 更新时间：${news.createDate}</div>
 	                        <div class="article-content">
-	                            <span class="article-summary"><b>摘要:${summary}</b></span>
+	                            <span class="article-summary"><b>摘要:${news.summary}</b></span>
 	                            <%if(news.getPicPath()==null||news.getPicPath().equals("")){%>
 	                            新闻图片:暂无
 	                            <%}else{%>
-	                            <img alt="Git" src="${contextPath}/upload/${picPath}" width="500px"height="300px"/>
+	                            <img alt="Git" src="${request.getContextPath()}/upload/${news.picPath}" width="500px"height="300px"/>
 	                            <%}
 	                            
 	                            %>
 	                            <br/>
-	                            <p>${content}</p>
+	                            <p>${news.content}</p>
 	                            
 	                        </div>
 							<div>修改为JSTL表达式模式</div>
