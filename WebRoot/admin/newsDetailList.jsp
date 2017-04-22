@@ -147,7 +147,7 @@ request.setAttribute("newsList",newsList);
                 		
                 		
                 		>修改</a>
-                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=2'">删除</a>
+                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=${news.id}'">删除</a>
                 		</td>
                 	</tr> 
                 	 </c:forEach>

@@ -348,56 +348,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 	
 	
 	
-	/*public static void main(String[]args){
-		
-		NewsDaoImpl newsDaoImpl = new NewsDaoImpl();
 
-		News news = new News();
-		
-		//NewsCategory newsCategory = new NewsCategory();
-		news.setAuthor("BcubBo");
-		news.setCategoryId(4);
-		news.setTitle("惊险震惊一幕！");
-		news.setSummary("惊险的过山车之旅！");
-		news.setContent("一男子独自坐过山车被卡住半空中，午夜消防官兵前来营救");
-		news.setCreateDate(new Date());
-		//date对象还是要有的
-		newsDaoImpl.add(news);
-		
-		//进行信息的添加操作，将来也可以进行封装
-		//news.setId(8);
-		//newsDaoImpl.delete(news);
-		//news.setId(10);
-		//news.setTitle("相当的震惊！！！");
-		//newsDaoImpl.update(news);
-		//news.setId(6);
-		//news.setCategoryId(4);
-		//newsDaoImpl.update(news);
-		List<News> newsList = new ArrayList<News>();
-		
-		//始终需要进行select将信息取出
-		//newsCategory.setId(4);
-		//newsDaoImpl.deleteNewsCategory(newsCategory);
-		newsList = newsDaoImpl.getNewsList();//列出
-		for(News _news:newsList){
-			
-			System.out.println("id:"+_news.getId()+"\n"+"categoryId:"+_news.getCategoryId()+"\n"+"title:"+_news.getTitle()+"\n"+"summary:"+_news.getSummary()+"\n"+"content:"+_news.getContent()+"\n"+"createDate:"+_news.getCreateDate()+"\n");
-			
-		}
-		
-		
-		
-		
-		
-	}
-
-
-
-
-*/
-
-
-////无用注释测试位置
 }
 	
 

@@ -65,19 +65,10 @@
 					<c:if test = "${newsCategoryList ne null}">
 					<c:forEach var="newsCategory" items="${newsCategoryList}">
 						
-	        			<option 
-	        			
-	        			
-	        			
-	        			<c:if test="${newsCategory.id eq news.categoryId}"> 							selected="selected"
-	        			
-	        			
-	        			</c:if>
-	        			
-	        			
-	        			value="${newsCategory.id}">${newsCategory.name}</option>
-	        			
-	        			
+	        			<option 	        			
+	        			<c:if test="${newsCategory.id eq news.categoryId}"> 							selected="selected"	        			
+	        			</c:if>			
+	        			value="${newsCategory.id}">${newsCategory.name}</option>		
 	        			</c:forEach>
 	        			</c:if>
 	        		</select>
@@ -106,7 +97,7 @@
 			</tr>
 			<tr>
 				<td  style="text-align:right;" class="text_tabledetail2">上传图片 </td>
-				<td style="text-align:left;"><input type="file" name="picPath" value="${news.picPath}"/></td>
+				<td style="text-align:left;"><input type="file" name="picPath" value="${request.getContextPath()}/upload/${news.picPath}"/></td>
 			</tr>
 			<tr>
 				<td  style="text-align:center;" colspan="2">
