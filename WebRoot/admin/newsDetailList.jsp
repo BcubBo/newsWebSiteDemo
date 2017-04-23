@@ -122,10 +122,7 @@
                 	
                 	List<News> newsList = newsService.getPageNewsList(currentPageNo,pageSize);
 request.setAttribute("newsList",newsList);
-                	/* int i=0;
-                	for(News news:newsList){
-                		i++;
-                		request.setAttribute("news",news); */
+
                 %>
                 
                 <tbody>
@@ -153,20 +150,19 @@ request.setAttribute("newsList",newsList);
                 	 </c:forEach>
                 </tbody>
                
-                <%
-                	//}
-                %>
+
             </table>
-           <div class="page-bar">
+                     <div class="page-bar">
 			<ul class="page-num-ul clearfix">
-				<li>共${totalCount}条记录 ${currentPageNo}/${totalPageCount}页
+				<li>共${totalCount}条记录 ${currentPageNo}/${totalPageCount}页</li>
 				<c:if test="${currentPageNo>1}">
-				<a href="javascript:page_nav(document.forms[0],1)">首页</a>
-				<a href="javascript:page_nav(document.forms[0],${currentPgeNo-1})">上一页</a>
+				<li><a href="javascript:page_nav(document.forms[0],1)">首页</a></li>
+				<li><a href="javascript:page_nav(document.forms[0],${currentPgeNo-1})">上一页</a></li>
 				
 				</c:if>
-				<c:if test="${currentPageNo<totalPageCount}"><a href="javascript:page_nav(document.forms[0],${currentPageNo+1})">下一页</a>
-				<a href="javascript:page_nav(document.forms[0],${totalPageCount})">最后一页</a></li>
+				<c:if test="${currentPageNo<totalPageCount}">
+				<li><a href="javascript:page_nav(document.forms[0],${currentPageNo+1})">下一页</a></li>
+				<li><a href="javascript:page_nav(document.forms[0],${totalPageCount})">最后一页</a></li>
 				
 				</c:if>
 			</ul>
@@ -175,6 +171,7 @@ request.setAttribute("newsList",newsList);
 	     <button type="button" class="page-btn" onClick='jump_to(document.forms[0],document.getElementById("inputPage").value)'>GO</button>
 		</span>
 		</div> 
+</body>
         </div>
        </div>
    </div>
