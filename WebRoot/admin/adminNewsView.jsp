@@ -36,12 +36,13 @@
 	                        <div class="source-bar">发布者：${news.author}&nbsp;&nbsp; 分类：${news.categoryName}&nbsp;&nbsp; 更新时间：${news.createDate}</div>
 	                        <div class="article-content">
 	                            <span class="article-summary"><b>摘要:${news.summary}</b></span>
-	                            <c:if test="${news.picPath eq null || news.picPath eq ''}">
+	                            <c:if test='${news.picPath eq null || news.picPath eq ""}'>
 	                            新闻图片:暂无
 	                            
 	                            </c:if>
+	                            <c:if test='${news.picPath ne null && news.picPath ne ""}'>
 	                            <img alt="${news.title}" src="${request.getContextPath()}/upload/${news.picPath}" width="500px"height="300px"/>
-	                            
+	                            </c:if>
 	                            <br/>
 	                            <p>${news.content}</p>
 	                            

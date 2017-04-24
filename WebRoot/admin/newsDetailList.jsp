@@ -152,7 +152,9 @@ request.setAttribute("newsList",newsList);
                
 
             </table>
-                     <div class="page-bar">
+            <jsp:include page="rollPage.jsp"></jsp:include>
+            <%--直接做一个动态包含就好了--%>
+                    <%--  <div class="page-bar">
 			<ul class="page-num-ul clearfix">
 				<li>共${totalCount}条记录 ${currentPageNo}/${totalPageCount}页</li>
 				<c:if test="${currentPageNo>1}">
@@ -170,9 +172,10 @@ request.setAttribute("newsList",newsList);
 	     <input type="text" name="inputPage" id="inputPage" class="page-key" />页
 	     <button type="button" class="page-btn" onClick='jump_to(document.forms[0],document.getElementById("inputPage").value)'>GO</button>
 		</span>
-		</div> 
-</body>
+		</div>  --%>
+
         </div>
        </div>
    </div>
  </div>
+ </body>
