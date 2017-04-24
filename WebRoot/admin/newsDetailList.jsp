@@ -130,7 +130,7 @@ request.setAttribute("newsList",newsList);
                 	<tr <c:if test="${status.count%2!=0}">class="admin-list-td-h2"</c:if>>
                 		<td><input type="hidden" id="totalPageCount" name="totalPageCount" value="${totalPageCount}"/>
                 		<a href='adminNewsView.jsp?id=${news.getId()}'>
-                		<c:out  value = "${news.title}"  escapeXml="true"/></a></td>
+                		<c:out  value = "${news.title}"  escapeXml="false"/></a></td>
                 		<td><c:out value="${news.author}" default="暂无"/></td>
                 		<td><c:out value="${news.createDate}" default="暂无"/></td>
                 		<td><a href=
