@@ -134,8 +134,9 @@ request.setAttribute("newsList",newsList);
                 		<td><c:out value="${news.author}" default="暂无"/></td>
                 		<td><c:out value="${news.createDate}" default="暂无"/></td>
                 		<td><a href=
-                		<c:url value="adminNewsModify.jsp">
+                		<c:url value="${request.getContextPath()}/doModify">
                 			<c:param name="id" value="${news.id}"></c:param>
+                			<!--获取了id-->
                 		
                 		
                 		</c:url>

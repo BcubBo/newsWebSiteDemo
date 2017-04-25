@@ -10,35 +10,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${request.getContextPath()}/css/common.css"
+<link href="../css/common.css"
 	type="text/css" rel="style"
 	
 
 />
-<script type="text/javascript" src="../ckeditor/ckeditor.js">
+<script type="text/javascript" src="./ckeditor/ckeditor.js">
 </script>
 <script type="text/javascript" src="./adminJS/contentCheck.js">
 </script>
 </head>
 
-<%
-	//取得新闻分类列表
-	List<NewsCategory> newsCategoryList = new ArrayList<NewsCategory>();
-	newsCategoryList = newsCategoryService.getNewsCategoryList();
-	request.setAttribute("newsCategoryList",newsCategoryList);
-	//取得这个要修改的新闻信息明细
-	String id = request.getParameter("id");
-	News news = new News();
-	news = newsService.getNewsById(Integer.parseInt(id));
-	request.setAttribute("news",news);
-
-
-
-
-
-
-
-%>
 
 
 
@@ -48,7 +30,7 @@
 
 
 <body>
-<form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
+<form name ="dataFrm" id="dataFrm" action="<%=request.getContextPath()%>/updateNews" method="post"
 	enctype="multipart/form-data" onsubmit="return checkIfIsNull()"
 >
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
@@ -60,6 +42,9 @@
 				<td style="text-align:right;" class="text_tabledetail2" >分类</td>
 				<td style="text-align:left;">
 				<!-- 列出所有的新闻分类 -->
+				
+				<input type="hidden" id="id" name="newsId" value="${news.id}"/>
+				<!--隐藏域存储id并将id赋予news对象-->
 					<select name="categoryId">
 					<option value="0">--请选择--</option>
 					<c:if test = "${newsCategoryList ne null}">
@@ -78,7 +63,7 @@
 			</tr>
 			<tr>
 				<td  style="text-align:right;" class="text_tabledetail2" id="checkPoint">标题</td>
-				<td style="text-align:left;"><input type="text" name="title" value=""/></td>
+				<td style="text-align:left;"><input type="text" name="title" value="${news.title}"/></td>
 			</tr>
 			<tr>
 				<td  style="text-align:right;" class="text_tabledetail2">作者</td>

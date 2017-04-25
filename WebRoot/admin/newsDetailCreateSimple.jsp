@@ -13,13 +13,13 @@
 <script type="text/javascript" src="./adminJS/contentCheck.js">
 
 </script>
-		<script src="${request.getContextPath()}/ckeditor/ckeditor.js">
+		<script src="../ckeditor/ckeditor.js">
 </script>
-		<link href="${request.getContextPath()}/css/common.css" rel="stylesheet" type="text/css" />
+		<link href="../css/common.css" rel="stylesheet" type="text/css" />
 		
 	</head>
 <body>
-<form name ="dataFrm" id="dataFrm" action="addNewsServlet" method="post"
+<form name ="dataFrm" id="dataFrm" action="<%=request.getContextPath()%>/addNewsServlet" method="post"
 	enctype="multipart/form-data" onsubmit="return checkIfIsNull()"
 >
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">

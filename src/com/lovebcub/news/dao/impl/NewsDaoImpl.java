@@ -95,9 +95,37 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 			
 			}finally{
 				if(this.closeResource()){
-					System.out.println(">>>>>>>关闭资源成功");
+					System.out.println(">>>>>>>关闭添加资源成功");
 			}else{
-				System.out.println(">>>>>>>关闭资源失败");
+				System.out.println(">>>>>>>关闭添加资源失败");
+				
+				}
+			}
+		}
+	return flag;
+	}
+	public boolean  addModifyAfter(News news) {
+		boolean flag = false;
+		if(this.getConnectionObj()){
+			try{
+				String sql = "update news_detail set categoryId=?,title=?,summary=?,content=?,author=?,createDate=?,picPath=? where id=?";
+				Object[] params = {news.getCategoryId(),news.getTitle(),news.getSummary(),news.getContent(),news.getAuthor(),news.getCreateDate(),
+						news.getPicPath(),news.getId()};
+				int i = this.executeUpdate(sql, params);
+			if(i>0){
+				System.out.println(">>>>>>>添加修改后信息成功<<<<<<<<<<<");
+				flag = true;
+				
+			}else{
+				System.out.println(">>>>>>>添加修改后信息失败<<<<<<<<<<<");
+				flag = false;
+			}
+			
+			}finally{
+				if(this.closeResource()){
+					System.out.println(">>>>>>>关闭修改后资源成功<<<<<<<<<<<");
+			}else{
+				System.out.println(">>>>>>>关闭修改后资源失败<<<<<<<<<<<<<<");
 				
 				}
 			}

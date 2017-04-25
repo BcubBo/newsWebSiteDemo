@@ -7,6 +7,7 @@ public interface NewsDao {
 	
 	public List<News> getNewsList();
 	public boolean add(News news);
+	public boolean addModifyAfter(News news);
 	public boolean update(News news );
 	public boolean delete(News news );
 	

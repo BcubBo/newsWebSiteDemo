@@ -16,6 +16,6 @@
     <div class="main-banner"><img src="../images/banner.png" />
     </div>
     <!--管理工具栏-->
-    <div class="admin-bar"><span class="fr">退出账户</span>管理员：admin 2012-06-19
+    <div class="admin-bar"><span class="fr">退出账户</span>管理员：admin 2017-00-00
     </div>
 </div>

@@ -6,9 +6,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,48 +21,20 @@ import com.lovebcub.news.entity.News;
 import com.lovebcub.news.service.NewsService;
 import com.lovebcub.news.service.impl.NewsServiceImpl;
 
-
 /**
- * Servlet implementation class addNewsServlet
+ * Servlet implementation class update
  */
 
-
-public class addNewsServlet extends HttpServlet {
+public class updateNews extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addNewsServlet() {
+    public updateNews() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		
-		System.out.println(">>>>>>>>>>>>>>>初始化操作");
-	}
-
-	/**
-	 * @see Servlet#destroy()
-	 */
-	public void destroy() {
-		System.out.println(">>>>>>>>>>>>>>>>>>销毁操作");
-		
-	}
-
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">>>>>>>>>调度器启动");
-		super.service(request, response);
-		
-		
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -129,6 +100,11 @@ public class addNewsServlet extends HttpServlet {
 								news.setContent(item.getString("utf-8"));
 			
 			
+							}else if(fieldName.equals("newsId")){
+								
+								news.setId(Integer.parseInt(item.getString()));
+								//设置并获取id
+								
 							}
 						}else{
 							//若是文件域
@@ -167,7 +143,7 @@ public class addNewsServlet extends HttpServlet {
 				
 				
 			}
-			boolean flag = newsService.add(news);
+			boolean flag = newsService.update(news);
 			if(flag){
 				response.sendRedirect("admin/newsDetailList.jsp");
 				//request.getRequestDispatcher("newsDetailList.jsp").forward(request,response);
@@ -238,7 +214,6 @@ public class addNewsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
-		//此为自动进行调用的方法，doGet和doPost进行了整合
 	}
 
 }
