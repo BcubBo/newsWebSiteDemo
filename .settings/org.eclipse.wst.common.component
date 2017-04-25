@@ -3,6 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/news/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="/news/admin"/>
+        <property name="context-root" value="/news_copy_2"/>
     </wb-module>
 </project-modules>

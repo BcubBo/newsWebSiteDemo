@@ -4,9 +4,19 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <!--<welcome-file>JNDI.jsp</welcome-file>-->
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+		<servlet-name>addNewsServlet</servlet-name>
+		<servlet-class>com.lovebcub.news.servlet.addNewsServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>addNewsServlet</servlet-name>
+  	<url-pattern>/addNewsServlet</url-pattern>
+  
+  
+  </servlet-mapping>
 </web-app>
