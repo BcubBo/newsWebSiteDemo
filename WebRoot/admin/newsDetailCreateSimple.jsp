@@ -19,7 +19,7 @@
 		
 	</head>
 <body>
-<form name ="dataFrm" id="dataFrm" action="doAdd.jsp" method="post"
+<form name ="dataFrm" id="dataFrm" action="addNewsServlet" method="post"
 	enctype="multipart/form-data" onsubmit="return checkIfIsNull()"
 >
 	<table  width="100%" border="0" cellspacing="5" cellpadding="0">
