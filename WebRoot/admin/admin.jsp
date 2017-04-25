@@ -15,13 +15,7 @@
 </head>
 
 <body>
-<%
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
 
-
-
-%>
 <!--页面顶部-->
 <jsp:include page="adminTop.jsp"></jsp:include>
 <!--页面中部-->

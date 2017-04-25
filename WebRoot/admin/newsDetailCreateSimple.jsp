@@ -4,12 +4,7 @@
 
 <html>
 	<head>
-<%
-	request.setCharacterEncoding("utf-8");
-	response.setCharacterEncoding("utf-8");
 
-
-%>
 <script type="text/javascript" src="./adminJS/contentCheck.js">
 
 </script>
