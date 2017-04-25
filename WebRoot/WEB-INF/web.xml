@@ -8,36 +8,70 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  
   <servlet>
+  <!--添加数据库和显示列表-->
     <servlet-name>addNewsServlet</servlet-name>
     <servlet-class>com.lovebcub.news.servlet.addNewsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
+  <!--添加数据库和显示列表-->
     <servlet-name>addNewsServlet</servlet-name>
     <url-pattern>/addNewsServlet</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  
   <servlet>
+  <!--修改数据库和显示列表主要跳转-->
     <servlet-name>doModify</servlet-name>
     <servlet-class>com.lovebcub.news.servlet.doModify</servlet-class>
   </servlet>
   <servlet-mapping>
+  <!--修改数据库和显示列表主要跳转-->
     <servlet-name>doModify</servlet-name>
     <url-pattern>/doModify</url-pattern>
-  
   </servlet-mapping>
-  <servlet>
   
-  	<servlet-name>updateNews</servlet-name>
-  	<servlet-class>com.lovebcub.news.servlet.updateNews</servlet-class>
+  
+  
+  
+  
+  <servlet>
+  <!--更新数据库和显示列表次要数据处理并结束跳转-->
+    <servlet-name>updateNews</servlet-name>
+    <servlet-class>com.lovebcub.news.servlet.updateNews</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <!--更新数据库和显示列表次要数据处理并结束跳转-->
+    <servlet-name>updateNews</servlet-name>
+    <url-pattern>/updateNews</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  <!--删除数据库和显示列表-->
+  	<servlet-name>deleteNews</servlet-name>
+  	<servlet-class>com.lovebcub.news.servlet.deleteNews</servlet-class>
   
   
   
   </servlet>
   <servlet-mapping>
-  	<servlet-name>updateNews</servlet-name>
-  	<url-pattern>/updateNews</url-pattern>
-  
-  
-  
+  <!--删除数据库和显示列表-->
+  	<servlet-name>deleteNews</servlet-name>
+  	<url-pattern>/deleteNews</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </web-app>

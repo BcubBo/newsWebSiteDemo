@@ -145,7 +145,21 @@ request.setAttribute("newsList",newsList);
                 		
                 		
                 		>修改</a>
-                			<a href="javascript:if(confirm('确认是否删除此新闻？')) location='adminNewsDel.jsp?id=${news.id}'">删除</a>
+                			<a  href=
+                			<c:url value="${request.getContextPath()}/deleteNews">
+                				<c:param name="id" value="${news.id}"></c:param> 
+                				
+                				
+                				
+                				
+                			</c:url>
+                			
+                			
+                			
+                			
+                			
+                			
+                			onclick="return if(confirm('确认是否删除此新闻？'))" >删除</a>
                 		</td>
                 	</tr> 
                 	 </c:forEach>
