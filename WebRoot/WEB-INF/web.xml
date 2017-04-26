@@ -40,28 +40,18 @@
     <servlet-name>deleteNews</servlet-name>
     <url-pattern>/deleteNews</url-pattern>
   </servlet-mapping>
-  
-  
   <filter>
-  <!--过滤器设置-->
-  		<filter-name>characterEncodingFilter</filter-name>
-  		<filter-class>com.lovebcub.news.filter.characterEncodingFilter</filter-class>
-  
-  
-  
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>com.lovebcub.news.filter.characterEncodingFilter</filter-class>
   </filter>
-  
   <filter-mapping>
-  <!--过滤器映射-->
-  		<filter-name>characterEncodingFilter</filter-name>
-  		<url-pattern>/*</url-pattern>
-  		<!--"/*"全局过滤设置-->
-  
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
   
-  
-  
-  
+  <listener>
+  	<listener-class>com.lovebcub.news.entity.User</listener-class>
+   </listener>
   
   
   

@@ -35,7 +35,7 @@ public class NewsDaoImpl extends BaseDao implements NewsDao {
 				
 				String picPath = resultSets.getString("picPath");
 				Timestamp modifyDate = resultSets.getTimestamp("modifyDate");
-				/*ystem.out.println("id:"+id+"\n"+
+				/*system.out.println("id:"+id+"\n"+
 						"categoryId:"+categoryId+"\n"+
 						"title:"+title+"\n"+
 						"summary:"+summary+"\n"+
