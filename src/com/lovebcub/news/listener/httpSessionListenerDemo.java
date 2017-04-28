@@ -33,7 +33,7 @@ public class httpSessionListenerDemo implements HttpSessionListener {
     	}
     	else{
     		
-    		count = count.intValue()+1;
+    		count = new Integer(count.intValue()+1);
     		System.out.println(">>>>>>>>>>sessionCreated执行了+1操作");
     		
     		
@@ -50,18 +50,22 @@ public class httpSessionListenerDemo implements HttpSessionListener {
     	ServletContext servletContext = arg0.getSession().getServletContext();
     	
     	Integer count = (Integer)servletContext.getAttribute("count");
+    	//获取的时候要进行属性设置到sevletContext中
     	
-    	if(count.intValue() == 0 ){
+    	if(count == null ){
     		
     		count = 0;
     		System.out.println(">>>>>>>>>>sessionDestroyed执行了归零操作");
     		
     	}else{
-    		count = count.intValue()-1;
+    		count = new Integer(count.intValue()-1);
+    		//此count并非是重新进行设置的count
     		System.out.println(">>>>>>>>>>sessionDestroyed执行了-1操作");
     		
     		
     	}
+    	servletContext.setAttribute("count",count);//需要设置
+    	System.out.println("重新进行count的属性的赋值");
     	
     	
     }

@@ -20,7 +20,7 @@
 %>
 当前用户:${guest}<br>
 在线人数:${onlineCount}<br>
-<!-- <a href="quit.jsp">退出</a> -->
+<a href="quit.jsp">退出</a>
 <br>
 当前在线人数HttpSessionListener统计:${applicationScope.count}<br>
 

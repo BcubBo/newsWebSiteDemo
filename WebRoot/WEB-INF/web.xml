@@ -51,15 +51,18 @@
   <listener>
     <listener-class>com.lovebcub.news.entity.User</listener-class>
   </listener>
-  
   <listener>
-  	
-  	<listener-class>com.lovebcub.news.listener.httpSessionListenerDemo</listener-class>
-  
-  
+    <listener-class>com.lovebcub.news.listener.httpSessionListenerDemo</listener-class>
   </listener>
   
-  
+  <servlet>
+ 	<servlet-name>connectionServlet</servlet-name>
+ 	<servlet-class>com.lovebcub.news.listener.connectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>connectionServlet</servlet-name>
+  	<url-pattern>/connectionServlet</url-pattern>
+  </servlet-mapping>
   
   
   
