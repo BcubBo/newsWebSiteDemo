@@ -11,12 +11,18 @@
 <%
 	User user = (User)session.getAttribute("guest");
 	String guest = user.getUserName();
+	
+	request.setAttribute("guest",guest);
+	request.setAttribute("onlineCount",userContants.USER_ONLINE_COUNT);
+	
 
 
 %>
 当前用户:${guest}<br>
-在线人数:${userContants.USER_ONLINE_COUNT}<br>
-<a href="quit.jsp">退出</a>
+在线人数:${onlineCount}<br>
+<!-- <a href="quit.jsp">退出</a> -->
+<br>
+当前在线人数HttpSessionListener统计:${applicationScope.count}<br>
 
 </body>
 </html>

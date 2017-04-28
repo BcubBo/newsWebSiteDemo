@@ -12,7 +12,7 @@
 	String guest = request.getParameter("guest");
 	if(guest!= null&& !guest.equals("")){
 		
-		User user  = null;
+		User user  = new User();
 		user.setUserName(guest);
 		session.setAttribute("guest",user);
 		response.sendRedirect("online.jsp");
