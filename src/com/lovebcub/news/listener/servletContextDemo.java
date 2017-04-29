@@ -14,7 +14,6 @@ import javax.sql.DataSource;
  * Application Lifecycle Listener implementation class servletContextDemo
  *
  */
-@WebListener
 public class servletContextDemo implements ServletContextListener {
 
     /**

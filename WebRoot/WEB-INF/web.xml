@@ -64,6 +64,9 @@
   	<url-pattern>/connectionServlet</url-pattern>
   </servlet-mapping>
   
+  <listener>
+  	<listener-class>com.lovebcub.news.listener.servletContextDemo</listener-class>
+  </listener>
   
   
   
