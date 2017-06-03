@@ -9,32 +9,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * Servlet Filter implementation class characterEncodingFiter
- */
 public class characterEncodingFilter implements Filter {
 	public int requestCount,requestShutdownCount,responseCount,responseShutdownCount,
 	chainCount,chainShutdownCount = 0;
 	
 	
 
-    /**
-     * Default constructor. 
-     */
     public characterEncodingFilter() {
         
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
 		
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		// place your code here
@@ -54,9 +42,6 @@ public class characterEncodingFilter implements Filter {
 		System.out.println(">>>>>>>>>>>>过滤器chain启动结束:\t"+(chainShutdownCount+=1)+"----------------");
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}

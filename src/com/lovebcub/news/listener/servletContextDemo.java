@@ -40,6 +40,7 @@ public class servletContextDemo implements ServletContextListener {
     	try {
 			Context contextObj = new InitialContext();
 			
+			
 			DataSource dataSourceObj = (DataSource)contextObj.lookup("java:comp/env/jdbc/news");
 			
 			servletContextObj.setAttribute("dataSourceObj",dataSourceObj);
