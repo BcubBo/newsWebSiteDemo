@@ -15,6 +15,7 @@
 	
 	out.println("name:"+request.getAttribute("name")+"<br/>");
 	out.println("class:"+request.getParameter("class")+"<br/>");
+	
 
 
 
